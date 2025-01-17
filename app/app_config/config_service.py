@@ -34,14 +34,16 @@ class ConfService:
     # ------------------------------------------------------------------------------------------------
     # PID issuer service URL
     # service_url = "https://preprod.issuer.eudiw.dev:4443/"
-    service_url = os.getenv("SERVICE_URL","https://issuer.eudiw.dev/")
+    # service_url = os.getenv("SERVICE_URL","https://issuer.eudiw.dev/")
+    service_url = os.getenv("SERVICE_URL","https://marmot-civil-gratefully.ngrok-free.app/")
     # service_url = "https://127.0.0.1:5000/"
     #service_url = os.getenv("SERVICE_URL","https://dev.issuer.eudiw.dev/")
 
     wallet_test_url = "https://dev.tester.issuer.eudiw.dev/"
 
     # ---------------------------------------------------------------------------
-    trusted_CAs_path = "/etc/eudiw/pid-issuer/cert/"
+    # trusted_CAs_path = "/etc/eudiw/pid-issuer/cert/"
+    trusted_CAs_path = "api_docs/test_tokens/IACA-token/"
 
     # ------------------------------------------------------------------------------------------------
     # eIDAS Node base href (used in lightrequest)
@@ -78,6 +80,36 @@ class ConfService:
     form_expiry = 60
 
     # ------------------------------------------------------------------------------------------------
+    # AgeOver18 namespace
+    age_over18_namespace = "it.infocert.eudi.age_over18.1"
+
+    # AgeOver18 doctype
+    age_over18_doctype = "it.infocert.eudi.open_bank.1"
+
+    # AgeOver18 validity in days
+    age_over18_validity = 90
+
+    # AgeOver18 issuing Authority
+    age_over18_issuing_authority = "Infocert QEAA issuer"
+
+    # AgeOver18 Organization ID
+    age_over18_organization_id = "Infocert"
+
+    # OpenBank namespace
+    open_bank_namespace = "it.infocert.eudi.open_bank.1"
+
+    # OpenBank doctype
+    open_bank_doctype = "it.infocert.eudi.open_bank.1"
+
+    # OpenBank validity in days
+    open_bank_validity = 90
+
+    # OpenBank issuing Authority
+    open_bank_issuing_authority = "Infocert QEAA issuer"
+
+    # OpenBank Organization ID
+    open_bank_organization_id = "Infocert"
+
     # PID namespace
     pid_namespace = "eu.europa.ec.eudi.pid.1"
 
@@ -228,6 +260,20 @@ class ConfService:
     }
 
     config_doctype = {
+        "it.infocert.eudi.age_over18.1":{
+            "issuing_authority": age_over18_issuing_authority,
+            "organization_id": age_over18_organization_id,
+            "validity": age_over18_validity,
+            "organization_name": age_over18_issuing_authority,
+            "namespace": age_over18_namespace,
+        },
+        "it.infocert.eudi.open_bank.1" :{
+            "issuing_authority": open_bank_issuing_authority,
+            "organization_id": open_bank_organization_id,
+            "validity": open_bank_validity,
+            "organization_name": open_bank_issuing_authority,
+            "namespace": open_bank_namespace,
+        },
         "eu.europa.ec.eudi.pid.1": {
             "issuing_authority": pid_issuing_authority,
             "organization_id": pid_organization_id,
@@ -341,6 +387,7 @@ class ConfService:
             "eu.europa.ec.eudi.hiid_mdoc",
             "eu.europa.ec.eudi.tax_mdoc",
             "eu.europa.ec.eudi.msisdn_mdoc",
+            "it.infocert.eudi.age_over18_mdoc"
         ],
         "country_selection": [
             "eu.europa.ec.eudi.loyalty_mdoc",
@@ -356,6 +403,8 @@ class ConfService:
             "eu.europa.ec.eudi.hiid_mdoc",
             "eu.europa.ec.eudi.tax_mdoc",
             "eu.europa.ec.eudi.msisdn_mdoc",
+            "it.infocert.eudi.open_bank_mdoc",
+            "it.infocert.eudi.age_over18_mdoc"
         ],
     }
 
@@ -382,7 +431,15 @@ class ConfService:
         },
         "eu.europa.ec.eudi.msisdn_mdoc":{
             "eu.europa.ec.eudi.pid.1":{"eu.europa.ec.eudi.pid.1":["family_name","given_name","birth_date","age_over_18","issuing_authority", "issuing_country"]}
-        }
+        },
+        "it.infocert.eudi.open_bank_mdoc":{
+            "eu.europa.ec.eudi.pid.1": {
+                "eu.europa.ec.eudi.pid.1": ["family_name", "given_name", "birth_date", "age_over_18",
+                                            "issuing_authority", "issuing_country"]}
+        },
+        "it.infocert.eudi.age_over18_mdoc": {
+            "eu.europa.ec.eudi.pid.1": {"eu.europa.ec.eudi.pid.1": ["age_over_18"]}
+        },
     }
 
     # Supported certificate algorithms and curves
