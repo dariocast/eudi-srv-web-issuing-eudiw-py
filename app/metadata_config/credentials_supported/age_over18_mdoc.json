@@ -29,7 +29,7 @@
       },
       "display": [
         {
-          "name": "Age over 18 Pseudonym",
+          "name": "IC Age over 18 Pseudonym",
           "locale": "en",
           "logo": {
             "url": "https://examplestate.com/public/pid.png",
@@ -38,7 +38,7 @@
         }
       ],
       "claims": {
-        "eu.europa.ec.eudi.pseudonym.age_over_18.1": {
+        "it.infocert.eudi.age_over18.1": {
           "user_pseudonym": {
             "mandatory": true,
             "value_type":"string",

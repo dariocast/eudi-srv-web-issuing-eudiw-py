@@ -84,7 +84,7 @@ class ConfService:
     age_over18_namespace = "it.infocert.eudi.age_over18.1"
 
     # AgeOver18 doctype
-    age_over18_doctype = "it.infocert.eudi.open_bank.1"
+    age_over18_doctype = "it.infocert.eudi.age_over18.1"
 
     # AgeOver18 validity in days
     age_over18_validity = 90
@@ -254,9 +254,11 @@ class ConfService:
     }
 
     common_name={
-        "eu.europa.ec.eudi.pid.1": "National ID",
-        "org.iso.18013.5.1.mDL": "Driving License",
-        "eu.europa.ec.eudi.pseudonym.age_over_18.1": "Age Verification "
+        # "eu.europa.ec.eudi.pid.1": "National ID",
+        # "org.iso.18013.5.1.mDL": "Driving License",
+        # "eu.europa.ec.eudi.pseudonym.age_over_18.1": "Age Verification ",
+        "it.infocert.eudi.age_over18.1": "Age Verification",
+        "it.infocert.eudi.open_bank.1": "Opening Bank"
     }
 
     config_doctype = {
@@ -438,7 +440,7 @@ class ConfService:
                                             "issuing_authority", "issuing_country"]}
         },
         "it.infocert.eudi.age_over18_mdoc": {
-            "eu.europa.ec.eudi.pid.1": {"eu.europa.ec.eudi.pid.1": ["age_over_18"]}
+            "eu.europa.ec.eudi.pid.1":{"eu.europa.ec.eudi.pid.1":["age_over_18"]}
         },
     }
 

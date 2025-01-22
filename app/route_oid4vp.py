@@ -250,6 +250,8 @@ def getpidoid4vp():
                     == "eu.europa.ec.eudi.pseudonym_over18_mdoc"
                     or cred_request["credential_configuration_id"]
                     == "eu.europa.ec.eudi.pseudonym_over18_mdoc_deferred_endpoint"
+                    or cred_request["credential_configuration_id"]
+                    == "it.infocert.eudi.age_over18_mdoc"
                 ):
                     is_ageOver18 = True
                     attributesForm.update({"user_pseudonym": str(uuid4())})
@@ -265,6 +267,7 @@ def getpidoid4vp():
             "eu.europa.ec.eudi.pseudonym.age_over_18.1" in cred_scopes
             or "eu.europa.ec.eudi.pseudonym.age_over_18.deferred_endpoint"
             in cred_scopes
+            or "it.infocert.eudi.age_over18.1" in cred_scopes
         ):
             is_ageOver18 = True
             attributesForm.update({"user_pseudonym": str(uuid4())})
@@ -276,6 +279,7 @@ def getpidoid4vp():
                     attributesForm.update({attribute: value})
         
         doctype_config = cfgservice.config_doctype["eu.europa.ec.eudi.pseudonym.age_over_18.1"]
+        # doctype_config = cfgservice.config_doctype["it.infocert.eudi.age_over18.1"]
 
         attributesForm.update({"issuing_country": "FC"})
         attributesForm.update({"issuing_authority": doctype_config["issuing_authority"]})
