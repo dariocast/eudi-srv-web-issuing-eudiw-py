@@ -1,8 +1,8 @@
 {
-  "it.infocert.eudi.age_over18_mdoc": {
+  "it.infocert.eudi.tin_mdoc": {
       "format": "mso_mdoc",
-      "doctype": "it.infocert.eudi.age_over18.1",
-      "scope": "it.infocert.eudi.age_over18.1",
+      "doctype": "it.infocert.eudi.tin.1",
+      "scope": "it.infocert.eudi.tin.1",
       "cryptographic_binding_methods_supported": [
         "jwk", "cose_key"
       ],
@@ -29,34 +29,25 @@
       },
       "display": [
         {
-          "name": "Age over 18 with Pseudonym",
+          "name": "Tax ID Number Credential",
           "locale": "en",
           "logo": {
             "url": "https://examplestate.com/public/pid.png",
-            "alt_text": "A square figure of a Age over 18"
+            "alt_text": "A square figure of a TIN"
           }
         }
       ],
       "claims": {
-        "it.infocert.eudi.age_over18.1": {
-          "user_pseudonym": {
+        "it.infocert.eudi.tin.1": {
+          "tin": {
             "mandatory": true,
-            "value_type":"string",
-            "source":"issuer",
-            "display": [
-              {
-                "name": "User pseudonym",
-                "locale": "en"              }
-            ]
-          },
-          "age_over_18": {
-            "mandatory": true,
-            "value_type":"bool",
+            "value_type": "string",
             "source":"user",
             "display": [
               {
-                "name": "Adult or minor",
-                "locale": "en"              }
+                "name": "Tax ID Number",
+                "locale": "en"
+              }
             ]
           },
           "issuance_date": {

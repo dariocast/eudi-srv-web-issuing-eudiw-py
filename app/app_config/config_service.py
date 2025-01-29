@@ -95,6 +95,21 @@ class ConfService:
     # AgeOver18 Organization ID
     age_over18_organization_id = "Infocert"
 
+    # TIN namespace
+    tin_namespace = "it.infocert.eudi.tin.1"
+
+    # TIN doctype
+    tin_doctype = "it.infocert.eudi.tin.1"
+
+    # TIN validity in days
+    tin_validity = 90
+
+    # TIN issuing Authority
+    tin_issuing_authority = "Infocert QEAA issuer"
+
+    # TIN Organization ID
+    tin_organization_id = "Infocert"
+
     # OpenBank namespace
     open_bank_namespace = "it.infocert.eudi.open_bank.1"
 
@@ -258,7 +273,8 @@ class ConfService:
         # "org.iso.18013.5.1.mDL": "Driving License",
         # "eu.europa.ec.eudi.pseudonym.age_over_18.1": "Age Verification ",
         "it.infocert.eudi.age_over18.1": "Age Verification",
-        "it.infocert.eudi.open_bank.1": "Opening Bank"
+        "it.infocert.eudi.open_bank.1": "Opening Bank",
+        "it.infocert.eudi.tin.1": "Tax ID Number"
     }
 
     config_doctype = {
@@ -275,6 +291,13 @@ class ConfService:
             "validity": open_bank_validity,
             "organization_name": open_bank_issuing_authority,
             "namespace": open_bank_namespace,
+        },
+        "it.infocert.eudi.tin.1": {
+            "issuing_authority": tin_issuing_authority,
+            "organization_id": tin_organization_id,
+            "validity": tin_validity,
+            "organization_name": tin_issuing_authority,
+            "namespace": tin_namespace,
         },
         "eu.europa.ec.eudi.pid.1": {
             "issuing_authority": pid_issuing_authority,
@@ -406,12 +429,16 @@ class ConfService:
             "eu.europa.ec.eudi.tax_mdoc",
             "eu.europa.ec.eudi.msisdn_mdoc",
             "it.infocert.eudi.open_bank_mdoc",
-            "it.infocert.eudi.age_over18_mdoc"
+            "it.infocert.eudi.age_over18_mdoc",
+            "it.infocert.eudi.age_over18_vc_sd_jwt",
+            "it.infocert.eudi.tin_mdoc",
+            "it.infocert.eudi.tin_vc_sd_jwt"
         ],
     }
 
     #eudi_openid4vp_url = "dev.verifier-backend.eudiw.dev"
-    dynamic_presentation_url = os.getenv("DYNAMIC_PRESENTATION_URL","https://dev.verifier-backend.eudiw.dev/ui/presentations/")
+    # dynamic_presentation_url = os.getenv("DYNAMIC_PRESENTATION_URL","https://dev.verifier-backend.eudiw.dev/ui/presentations/")
+    dynamic_presentation_url = os.getenv("DYNAMIC_PRESENTATION_URL","https://verifier-backend.eudiw.dev/ui/presentations/")
     dynamic_issuing = {
         "eu.europa.ec.eudi.pseudonym_over18_mdoc":{
             "eu.europa.ec.eudi.pid.1":{"eu.europa.ec.eudi.pid.1":["age_over_18"]}

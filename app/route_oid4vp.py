@@ -258,6 +258,8 @@ def getpidoid4vp():
             elif "vct" in cred_request:
                 if cred_request["vct"] == "eu.europa.ec.eudi.pseudonym_jwt_vc_json":
                     attributesForm.update({"user_pseudonym": str(uuid4())})
+                if cred_request["vct"] == "it.infocert.eudi.age_over18_vc_sd_jwt":
+                    attributesForm.update({"user_pseudonym": str(uuid4())})
 
     elif (
         "authorization_params" in session and "scope" in session["authorization_params"]
