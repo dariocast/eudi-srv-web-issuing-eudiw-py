@@ -2,6 +2,7 @@ from urllib.parse import urlparse
 from config_service import ConfService as cfgservice
 
 parsed_url = urlparse(cfgservice.service_url)
+# parsed_url = urlparse("https://issuer.eudiw.dev/")
 subdomain = parsed_url.netloc
 
 CONFIG = {

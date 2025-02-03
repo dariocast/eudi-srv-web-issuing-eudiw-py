@@ -1,0 +1,194 @@
+{
+  "it.infocert.eudi.open_bank_mdoc": {
+      "format": "mso_mdoc",
+      "doctype": "it.infocert.eudi.open_bank.1",
+      "scope": "it.infocert.eudi.open_bank.1",
+      "display": [
+        {
+          "name": "Bank Account Creation Credential (IT Bank)",
+          "locale": "en-US",
+          "logo": null,
+          "description": null,
+          "background_color": "#12107c",
+          "background_image": null,
+          "text_color": "#FFFFFF"
+        }
+      ],
+      "cryptographic_binding_methods_supported": [
+        "jwk"
+      ],
+      "cryptographic_suites_supported": [
+        "ES256"
+      ],
+      "proof_types_supported": {
+        "jwt": {
+          "proof_signing_alg_values_supported": [
+            "ES256"
+          ]
+        },
+        "cwt": {
+          "proof_signing_alg_values_supported": [
+            "ES256"
+          ]
+        }
+      },
+      "claims": {
+        "it.infocert.eudi.open_bank.1": {
+          "given_name": {
+            "mandatory": true,
+            "value_type": "string",
+            "source":"user",
+            "display": [
+              {
+                "name": "First Name",
+                "locale": "en"
+              }
+            ]
+          },
+          "family_name": {
+            "mandatory": true,
+            "value_type": "string",
+            "source":"user",
+            "display": [
+              {
+                "name": "Last Name",
+                "locale": "en"
+              }
+            ]
+          },
+          "email": {
+            "mandatory": false,
+            "value_type": "string",
+            "source":"user",
+            "display": [
+              {
+                "name": "Email",
+                "locale": "en"
+              }
+            ]
+          },
+          "phone_number": {
+            "mandatory": false,
+            "value_type": "string",
+            "source":"user",
+            "display": [
+              {
+                "name": "Phone Number",
+                "locale": "en"
+              }
+            ]
+          },
+          "resident_address": {
+            "mandatory": true,
+            "value_type": "string",
+            "source":"user",
+            "display": [
+              {
+                "name": "Resident Address",
+                "locale": "en"
+              }
+            ]
+          },
+          "resident_city": {
+            "mandatory": true,
+            "value_type": "string",
+            "source":"user",
+            "display": [
+              {
+                "name": "Resident City",
+                "locale": "en"
+              }
+            ]
+          },
+          "resident_country": {
+            "mandatory": true,
+            "value_type": "string",
+            "source":"user",
+            "display": [
+              {
+                "name": "Resident Country",
+                "locale": "en"
+              }
+            ]
+          },
+          "resident_house_number": {
+            "mandatory": true,
+            "value_type": "string",
+            "source":"user",
+            "display": [
+              {
+                "name": "Resident House Number",
+                "locale": "en"
+              }
+            ]
+          },
+          "resident_postal_code": {
+            "mandatory": true,
+            "value_type": "string",
+            "source":"user",
+            "display": [
+              {
+                "name": "Resident Postal Code",
+                "locale": "en"
+              }
+            ]
+          },
+          "resident_state": {
+            "mandatory": true,
+            "value_type": "string",
+            "source":"user",
+            "display": [
+              {
+                "name": "Resident State",
+                "locale": "en"
+              }
+            ]
+          },
+          "resident_street": {
+            "mandatory": true,
+            "value_type": "string",
+            "source":"user",
+            "display": [
+              {
+                "name": "Resident Street",
+                "locale": "en"
+              }
+            ]
+          },
+          "tax_id_code": {
+            "mandatory": false,
+            "value_type": "string",
+            "source":"user",
+            "display": [
+              {
+                "name": "Tax Id Code",
+                "locale": "en"
+              }
+            ]
+          },
+          "phone_number_is_verified": {
+            "mandatory": false,
+            "value_type": "bool",
+            "source":"user",
+            "display": [
+              {
+                "name": "Phone Number Is Verified",
+                "locale": "en"
+              }
+            ]
+          },
+          "email_is_verified": {
+            "mandatory": false,
+            "value_type": "bool",
+            "source":"user",
+            "display": [
+              {
+                "name": "Email Is Verified",
+                "locale": "en"
+              }
+            ]
+          }
+        }
+      }
+    }
+}
