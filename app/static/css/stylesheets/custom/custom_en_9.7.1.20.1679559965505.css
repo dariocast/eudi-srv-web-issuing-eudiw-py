@@ -111,15 +111,15 @@ html {
 
 body {
     margin-bottom: 165px;
-    background: #d8d8d8;
-    background: -moz-radial-gradient(center, ellipse cover, #f2f2f2 0, #afafaf 100%);
-    background: -webkit-radial-gradient(center, ellipse cover, #f2f2f2 0, #afafaf 100%);
-    background: radial-gradient(ellipse at center, #f2f2f2 0, #afafaf 100%);
+    /*background: #d8d8d8;*/
+    /*background: -moz-radial-gradient(center, ellipse cover, #f2f2f2 0, #afafaf 100%);*/
+    /*background: -webkit-radial-gradient(center, ellipse cover, #f2f2f2 0, #afafaf 100%);*/
+    /*background: radial-gradient(ellipse at center, #f2f2f2 0, #afafaf 100%);*/
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#afafaf', GradientType=1)
 }
 
 body {
-    background: #d8d8d8\9;
+    /*background: #d8d8d8\9;*/
     filter: none\9
 }
 

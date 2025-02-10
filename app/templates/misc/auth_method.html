@@ -39,13 +39,9 @@
 
 <body id="responsive-main-nav1">
     <div class="main container-fluid">
-        <header role="banner" class="main-header">
-            <div class="container">
-                <div class="row">
-                    <img src="{{url_for('static', filename='ic-logo.svg')}}">
-                </div>
-            </div>
-        </header>
+        <!-- Header -->
+        {% include 'misc/header.html' %}
+
         <div role="main" class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -93,7 +89,9 @@
             </div>
         </div>
     </div>
-    <!-- Version 9.7.1.20 - 23/03/2023 - 09:26 -->
+    <!-- Footer -->
+    {%  include 'misc/footer.html' %}
+
 </body>
 <script>
     var radioButtons = document.querySelectorAll('input[name="optionsRadios"]');
