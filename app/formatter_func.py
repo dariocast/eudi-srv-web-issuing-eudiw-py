@@ -149,15 +149,22 @@ def mdocFormatter(data, doctype, country, device_publickey):
         if response.status_code == 200:
             revocation_json = response.json()
 
+            mdoci.new(
+                doctype=doctype,
+                data=data,
+                validity=validity,
+                devicekeyinfo=device_publickey,
+                cert_path=cfgcountries.supported_countries[country]["pid_mdoc_cert"],
+                revocation=revocation_json
+
+            )
+
     mdoci.new(
         doctype=doctype,
         data=data,
         validity=validity,
         devicekeyinfo=device_publickey,
-        cert_path=cfgcountries.supported_countries[country]["pid_mdoc_cert"],
-        revocation = revocation_json
-                    
-          )
+        cert_path=cfgcountries.supported_countries[country]["pid_mdoc_cert"],)
 
     return base64.urlsafe_b64encode(mdoci.dump()).decode("utf-8")
 

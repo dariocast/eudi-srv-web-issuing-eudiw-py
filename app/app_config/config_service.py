@@ -176,6 +176,9 @@ class ConfService:
     # current version
     current_version = "0.6"
 
+    # Issuing country for credential that needs
+    issuing_country = "IT"
+
     # IANA registered claims
     Registered_claims = {
         "birth_date": "birthdate",

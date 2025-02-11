@@ -149,7 +149,7 @@ def preauth_form():
     cleaned_data.update(
         {
             "version": cfgservice.current_version,
-            "issuing_country": "FC",
+            "issuing_country": cfgservice.issuing_country,
         }
     )
 
@@ -346,9 +346,19 @@ def credentialOfferReq2():
     uri = f"openid-credential-offer://credential_offer?credential_offer=" + urllib.parse.quote(
                     json_string, safe=":/"
                 )
-   
-
-    return credential_offer #{"credential_offer": credential_offer,"uri": uri}
+    # QR code png
+    qrcode = segno.make(uri)
+    out = io.BytesIO()
+    qrcode.save(out, kind='png', scale=3)
+    qr_img_base64 = "data:image/png;base64," + base64.b64encode(out.getvalue()).decode(
+        "utf-8"
+    )
+    return {
+        "credential_offer": credential_offer,
+        "uri": uri,
+        "qr_code": qr_img_base64,
+        "tx_code": tx_code
+    }
 
 
 
