@@ -291,8 +291,8 @@ def generate_offer(data):
 
 
 
-@preauth.route("/credentialOfferReq2", methods=["POST"])
-def credentialOfferReq2():
+@preauth.route("/generateCredentialOffer", methods=["POST"])
+def generateCredentialOffer():
 
     json_token = request.form.get('request')
 
