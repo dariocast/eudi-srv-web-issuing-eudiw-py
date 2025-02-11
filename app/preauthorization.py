@@ -367,13 +367,13 @@ def generateCredentialOffer():
 def generate_preauth_token(data, authorization_details):
     user_id = generate_unique_id()
  
-    data.update({"issuing_country": "FC"})
+    data.update({"issuing_country": cfgservice.issuing_country})
 
     form_dynamic_data[user_id] = data.copy()
 
     form_dynamic_data[user_id].update({"expires":datetime.now() + timedelta(minutes=cfgservice.form_expiry)})
 
-    user_id="FC." + user_id
+    user_id= f'{cfgservice.issuing_country}.{user_id}'
 
 
     url = cfgservice.service_url + "pushed_authorizationv2"

@@ -31,6 +31,7 @@ class ConfCountries:
     urlReturnEE = "https://pprpid.provider.eudiw.projj.eu/tara/redirect"
 
     formCountry = "FC"
+    infocertCountry = "IT"
     # supported countries
     supported_countries = {
         "EU": {
@@ -52,6 +53,22 @@ class ConfCountries:
             },
             "connection_type": "eidasnode",
             "dynamic_R2": cfgserv.service_url + "eidasnode/dynamic_R2",
+        },
+        infocertCountry: {
+            "name": "Infocert Italy",
+            "pid_mdoc_privkey": "api_docs/test_tokens/DS-token/PID-DS-0002/PID-DS-0002.pid-ds-0002.key.pem",
+            "pid_mdoc_privkey_passwd": b'pid-ds-0002',  # None or bytes
+            "pid_mdoc_cert": "api_docs/test_tokens/DS-token/PID-DS-0002/PID-DS-0002.cert.der",
+            "un_distinguishing_sign": "IT",
+            "supported_credentials": [
+                "it.infocert.eudi.open_bank_mdoc",
+                "it.infocert.eudi.age_over18_mdoc",
+                "it.infocert.eudi.tin_mdoc",
+                "it.infocert.eudi.open_bank_vc_sd_jwt",
+                "it.infocert.eudi.age_over18_vc_sd_jwt",
+                "it.infocert.eudi.tin_vc_sd_jwt"
+            ],
+            "dynamic_R2": cfgserv.service_url + "dynamic/form_R2",
         },
         formCountry: {
             "name": "FormEU",

@@ -584,7 +584,7 @@ def dynamic_R2_data_collect(country, user_id):
     user_id -- user identifier needed to get respective attributes
     country -- credential issuing country that user selected
     """
-    if country == "FC":
+    if country == cfgserv.issuing_country:
         data = form_dynamic_data.get(user_id, "Data not found")
 
         if data == "Data not found":
@@ -739,6 +739,9 @@ def credentialCreation(credential_request, data, country):
             form_data = data
 
         elif country == "sample":
+            form_data = data
+
+        elif country == cfgserv.issuing_country:
             form_data = data
 
         elif (

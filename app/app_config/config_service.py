@@ -625,7 +625,7 @@ class ConfService:
 
     app_logger = logging.getLogger("app_logger")
     app_logger.addHandler(log_handler_info)
-    app_logger.setLevel(logging.INFO)
+    app_logger.setLevel(logging.DEBUG)
 
     """  logger_error = logging.getLogger("error")
     logger_error.addHandler(log_handler_info)

@@ -283,7 +283,7 @@ def getpidoid4vp():
         doctype_config = cfgservice.config_doctype["eu.europa.ec.eudi.pseudonym.age_over_18.1"]
         # doctype_config = cfgservice.config_doctype["it.infocert.eudi.age_over18.1"]
 
-        attributesForm.update({"issuing_country": "FC"})
+        attributesForm.update({"issuing_country": cfgservice.issuing_country})
         attributesForm.update({"issuing_authority": doctype_config["issuing_authority"]})
         if "credential_type" in doctype_config:
             attributesForm.update({"credential_type":doctype_config["credential_type"] })
