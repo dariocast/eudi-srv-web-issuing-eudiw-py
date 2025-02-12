@@ -6,11 +6,11 @@
   "deferred_credential_endpoint": "https://marmot-civil-gratefully.ngrok-free.app/deferred_credential",
   "display": [
     {
-    "name": "Digital Credentials Issuer",
+    "name": "Infocert EUDI Credentials Issuer",
     "locale": "en",
     "logo": {
-        "uri": "https://issuer.eudiw.dev/ic-logo.png",
-        "alt_text": "EU Digital Identity Wallet Logo"
+        "uri": "https://www.infocert.it/content/uploads/2021/09/logo.svg",
+        "alt_text": "Infocert Logo"
     }
     }
   ],

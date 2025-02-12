@@ -194,7 +194,7 @@ def preauth_form():
     
         presentation_data[credential].update({"estimated_issuance_date":today.strftime("%Y-%m-%d")})
         presentation_data[credential].update({"estimated_expiry_date":expiry.strftime("%Y-%m-%d")})
-        presentation_data[credential].update({"issuing_country": "FC"}),
+        presentation_data[credential].update({"issuing_country": cfgservice.issuing_country}),
         presentation_data[credential].update({"issuing_authority": doctype_config["issuing_authority"]})
         
         if "credential_type" in doctype_config:

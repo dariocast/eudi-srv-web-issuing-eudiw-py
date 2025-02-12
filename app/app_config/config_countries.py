@@ -66,7 +66,11 @@ class ConfCountries:
                 "it.infocert.eudi.tin_mdoc",
                 "it.infocert.eudi.open_bank_vc_sd_jwt",
                 "it.infocert.eudi.age_over18_vc_sd_jwt",
-                "it.infocert.eudi.tin_vc_sd_jwt"
+                "it.infocert.eudi.tin_vc_sd_jwt",
+                "it.infocert.eudi.email_mdoc",
+                "it.infocert.eudi.email_vc_sd_jwt",
+                "it.infocert.eudi.phone_mdoc",
+                "it.infocert.eudi.phone_vc_sd_jwt"
             ],
             "dynamic_R2": cfgserv.service_url + "dynamic/form_R2",
         },

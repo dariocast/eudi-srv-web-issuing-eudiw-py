@@ -129,6 +129,36 @@ class ConfService:
     # OpenBank Organization ID
     open_bank_organization_id = "Infocert"
 
+    # Email namespace
+    email_namespace = "it.infocert.eudi.email.1"
+
+    # Email doctype
+    email_doctype = "it.infocert.eudi.email.1"
+
+    # Email validity in days
+    email_validity = 365
+
+    # Email issuing Authority
+    email_issuing_authority = "Infocert QEAA issuer"
+
+    # Email Organization ID
+    email_organization_id = "Infocert"
+
+    # phone namespace
+    phone_namespace = "it.infocert.eudi.phone.1"
+
+    # phone doctype
+    phone_doctype = "it.infocert.eudi.phone.1"
+
+    # phone validity in days
+    phone_validity = 365
+
+    # phone issuing Authority
+    phone_issuing_authority = "Infocert QEAA issuer"
+
+    # phone Organization ID
+    phone_organization_id = "Infocert"
+
     # PID namespace
     pid_namespace = "eu.europa.ec.eudi.pid.1"
 
@@ -300,7 +330,9 @@ class ConfService:
         # "eu.europa.ec.eudi.pseudonym.age_over_18.1": "Age Verification ",
         "it.infocert.eudi.age_over18.1": "Age Verification",
         "it.infocert.eudi.open_bank.1": "Opening Bank",
-        "it.infocert.eudi.tin.1": "Tax ID Number"
+        "it.infocert.eudi.tin.1": "Tax ID Number",
+        "it.infocert.eudi.email.1": "Email Credential",
+        "it.infocert.eudi.phone.1": "Phone Credential",
     }
 
     config_doctype = {
@@ -324,6 +356,20 @@ class ConfService:
             "validity": tin_validity,
             "organization_name": tin_issuing_authority,
             "namespace": tin_namespace,
+        },
+        "it.infocert.eudi.email.1": {
+            "issuing_authority": email_issuing_authority,
+            "organization_id": email_organization_id,
+            "validity": email_validity,
+            "organization_name": email_issuing_authority,
+            "namespace": email_namespace,
+        },
+        "it.infocert.eudi.phone.1": {
+            "issuing_authority": phone_issuing_authority,
+            "organization_id": phone_organization_id,
+            "validity": phone_validity,
+            "organization_name": phone_issuing_authority,
+            "namespace": phone_namespace,
         },
         "eu.europa.ec.eudi.pid.1": {
             "issuing_authority": pid_issuing_authority,
@@ -453,10 +499,15 @@ class ConfService:
             "eu.europa.ec.eudi.tax_mdoc",
             "eu.europa.ec.eudi.msisdn_mdoc",
             "it.infocert.eudi.open_bank_mdoc",
+            "it.infocert.eudi.open_bank_vc_sd_jwt",
             "it.infocert.eudi.age_over18_mdoc",
             "it.infocert.eudi.age_over18_vc_sd_jwt",
             "it.infocert.eudi.tin_mdoc",
             "it.infocert.eudi.tin_vc_sd_jwt",
+            "it.infocert.eudi.email_mdoc",
+            "it.infocert.eudi.email_vc_sd_jwt",
+            "it.infocert.eudi.phone_mdoc",
+            "it.infocert.eudi.phone_vc_sd_jwt",
             "eu.europa.ec.eudi.ehic_mdoc",
         ],
     }
