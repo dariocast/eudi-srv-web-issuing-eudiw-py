@@ -296,6 +296,7 @@ def generateCredentialOffer():
 
     json_token = request.form.get('request')
 
+    # TODO: Evaluate a non-jwt payload
     header, payload, signature = json_token.split('.')
 
     payload += '=' * (-len(payload) % 4)
