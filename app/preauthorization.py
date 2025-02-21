@@ -25,17 +25,23 @@ import base64
 import io
 import json
 import random
+
+import jwt
 from PIL import Image
-from flask import Blueprint, current_app, make_response, redirect, render_template, request, session
+from flask import Blueprint, current_app, make_response, redirect, render_template, request, session, jsonify
 from flask_cors import CORS
 import requests
 import urllib.parse
 from datetime import date, datetime, timedelta
+
+from jwt import ExpiredSignatureError, InvalidTokenError
+
 from redirect_func import url_get
 
 import segno
 
 from app.route_oidc import service_endpoint
+from .app_config.config_secrets import hmac_secret
 from .app_config.config_service import ConfService as cfgservice
 from app.misc import authentication_error_redirect, calculate_age, generate_unique_id, getAttributesForm, getAttributesForm2, validate_image
 
@@ -293,73 +299,80 @@ def generate_offer(data):
 
 @preauth.route("/generateCredentialOffer", methods=["POST"])
 def generateCredentialOffer():
+    try:
+        json_token = request.form.get('request')
+        if not json_token:
+            return jsonify({"error": "Missing JWT request"}), 400
 
-    json_token = request.form.get('request')
+        # ? Validate JWT Signature using HMAC (HS256)
+        try:
+            decoded_payload = jwt.decode(json_token, hmac_secret, algorithms=["HS256"])
+        except ExpiredSignatureError:
+            return jsonify({"error": "JWT has expired"}), 401
+        except InvalidTokenError:
+            return jsonify({"error": "Invalid JWT"}), 400
 
-    # TODO: Evaluate a non-jwt payload
-    header, payload, signature = json_token.split('.')
+        # ? Extract data from JWT payload
+        authorization_details = []
+        credential_ids = []
 
-    payload += '=' * (-len(payload) % 4)
-    decoded_payload = base64.urlsafe_b64decode(payload).decode('utf-8')
+        for credential in decoded_payload["credentials"]:
+            authorization_details.append({
+                "type": "openid_credential",
+                "credential_configuration_id": credential["credential_configuration_id"]
+            })
+            if credential["credential_configuration_id"] not in credential_ids:
+                credential_ids.append(credential["credential_configuration_id"])
 
-    json_payload = json.loads(decoded_payload)
+        data = decoded_payload["credentials"][0]["data"]
 
-    authorization_details=[]
-    credential_ids = []
+        pre_auth_code = generate_preauth_token(data=data, authorization_details=authorization_details)
 
-    for credential in json_payload["credentials"]:
-        authorization_details.append({
-            "type": "openid_credential",
-            "credential_configuration_id":credential["credential_configuration_id"]
-        })
-        if credential["credential_configuration_id"] not in credential_ids:
-            credential_ids.append(credential["credential_configuration_id"])
- 
-    data = json_payload["credentials"][0]["data"]
+        # ? Handle transaction_id, generate if missing
+        transaction_id = request.args.get("transaction_id", generate_unique_id())
+        tx_code = random.randint(10000, 99999)
 
-    pre_auth_code = generate_preauth_token(data=data,authorization_details=authorization_details)
+        transaction_codes[transaction_id] = {
+            "pre_auth_code": pre_auth_code,
+            "tx_code": str(tx_code),
+            "expires": datetime.now() + timedelta(minutes=cfgservice.tx_code_expiry)
+        }
 
-    tx_code=random.randint(10000,99999)
-
-    transaction_id = generate_unique_id()
-
-    transaction_codes.update({transaction_id:{"pre_auth_code":pre_auth_code,"tx_code":str(tx_code),"expires":datetime.now() + timedelta(minutes=cfgservice.tx_code_expiry)}})
-
-    credential_offer = {
-        "credential_issuer": cfgservice.service_url[:-1],
-        "credential_configuration_ids": credential_ids,
-        "grants" : {
-            "urn:ietf:params:oauth:grant-type:pre-authorized_code" : {
-                 "pre-authorized_code": transaction_id,
-                 "tx_code": {
-                    "length": 5,
-                    "input_mode": "numeric",
-                    "description": "Please provide the one-time code.",
-                    "value": tx_code
+        credential_offer = {
+            "credential_issuer": cfgservice.service_url.rstrip('/'),
+            "credential_configuration_ids": credential_ids,
+            "grants": {
+                "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
+                    "pre-authorized_code": transaction_id,
+                    "tx_code": {
+                        "length": 5,
+                        "input_mode": "numeric",
+                        "description": "Please provide the one-time code.",
+                        "value": tx_code
+                    }
                 }
             }
         }
-    }
 
+        json_string = json.dumps(credential_offer)
+        uri = f"openid-credential-offer://credential_offer?credential_offer=" + urllib.parse.quote(json_string, safe=":/")
 
-    json_string = json.dumps(credential_offer)
+        # ? Generate QR Code
+        qrcode = segno.make(uri)
+        out = io.BytesIO()
+        qrcode.save(out, kind='png', scale=3)
+        qr_img_base64 = "data:image/png;base64," + base64.b64encode(out.getvalue()).decode("utf-8")
 
-    uri = f"openid-credential-offer://credential_offer?credential_offer=" + urllib.parse.quote(
-                    json_string, safe=":/"
-                )
-    # QR code png
-    qrcode = segno.make(uri)
-    out = io.BytesIO()
-    qrcode.save(out, kind='png', scale=3)
-    qr_img_base64 = "data:image/png;base64," + base64.b64encode(out.getvalue()).decode(
-        "utf-8"
-    )
-    return {
-        "credential_offer": credential_offer,
-        "uri": uri,
-        "qr_code": qr_img_base64,
-        "tx_code": tx_code
-    }
+        return jsonify({
+            "credential_offer": credential_offer,
+            "uri": uri,
+            "qr_code": qr_img_base64,
+            "tx_code": tx_code,
+            "transaction_id": transaction_id
+        })
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 
