@@ -304,15 +304,20 @@ def generateCredentialOffer():
         if not json_token:
             return jsonify({"error": "Missing JWT request"}), 400
 
-        # ? Validate JWT Signature using HMAC (HS256)
+        # Validate JWT Signature using HMAC (HS256)
         try:
-            decoded_payload = jwt.decode(json_token, hmac_secret, algorithms=["HS256"])
+            if hmac_secret:  # Only validate if `hmac_secret` is set
+                decoded_payload = jwt.decode(json_token, hmac_secret, algorithms=["HS256"])
+            else:
+                header, payload, signature = json_token.split('.')
+                payload += '=' * (-len(payload) % 4)  # Fix padding
+                decoded_payload = json.loads(base64.urlsafe_b64decode(payload).decode('utf-8'))
         except ExpiredSignatureError:
             return jsonify({"error": "JWT has expired"}), 401
         except InvalidTokenError:
             return jsonify({"error": "Invalid JWT"}), 400
 
-        # ? Extract data from JWT payload
+        # Extract data from JWT payload
         authorization_details = []
         credential_ids = []
 
@@ -328,7 +333,7 @@ def generateCredentialOffer():
 
         pre_auth_code = generate_preauth_token(data=data, authorization_details=authorization_details)
 
-        # ? Handle transaction_id, generate if missing
+        # Handle transaction_id, generate if missing
         transaction_id = request.args.get("transaction_id", generate_unique_id())
         tx_code = random.randint(10000, 99999)
 
@@ -357,7 +362,7 @@ def generateCredentialOffer():
         json_string = json.dumps(credential_offer)
         uri = f"openid-credential-offer://credential_offer?credential_offer=" + urllib.parse.quote(json_string, safe=":/")
 
-        # ? Generate QR Code
+        # Generate QR Code
         qrcode = segno.make(uri)
         out = io.BytesIO()
         qrcode.save(out, kind='png', scale=3)
