@@ -34,7 +34,8 @@ class ConfService:
     # ------------------------------------------------------------------------------------------------
     # PID issuer service URL
     # service_url = "https://preprod.issuer.eudiw.dev:4443/"
-    service_url = os.getenv("SERVICE_URL", "https://issuer.eudiw.dev/")
+    # service_url = os.getenv("SERVICE_URL","https://issuer.eudiw.dev/")
+    service_url = os.getenv("SERVICE_URL","https://marmot-civil-gratefully.ngrok-free.app/")
     # service_url = "https://127.0.0.1:5000/"
     # service_url = os.getenv("SERVICE_URL","https://dev.issuer.eudiw.dev/")
 
@@ -43,7 +44,8 @@ class ConfService:
     revocation_service_url = "https://issuer.eudiw.dev/token_status_list/take"
 
     # ---------------------------------------------------------------------------
-    trusted_CAs_path = "/etc/eudiw/pid-issuer/cert/"
+    # trusted_CAs_path = "/etc/eudiw/pid-issuer/cert/"
+    trusted_CAs_path = "api_docs/test_tokens/IACA-token/"
 
     # ------------------------------------------------------------------------------------------------
     # eIDAS Node base href (used in lightrequest)
@@ -82,6 +84,81 @@ class ConfService:
     form_expiry = 60
 
     # ------------------------------------------------------------------------------------------------
+    # AgeOver18 namespace
+    age_over18_namespace = "it.infocert.eudi.age_over18.1"
+
+    # AgeOver18 doctype
+    age_over18_doctype = "it.infocert.eudi.age_over18.1"
+
+    # AgeOver18 validity in days
+    age_over18_validity = 90
+
+    # AgeOver18 issuing Authority
+    age_over18_issuing_authority = "Infocert QEAA issuer"
+
+    # AgeOver18 Organization ID
+    age_over18_organization_id = "Infocert"
+
+    # TIN namespace
+    tin_namespace = "it.infocert.eudi.tin.1"
+
+    # TIN doctype
+    tin_doctype = "it.infocert.eudi.tin.1"
+
+    # TIN validity in days
+    tin_validity = 90
+
+    # TIN issuing Authority
+    tin_issuing_authority = "Infocert QEAA issuer"
+
+    # TIN Organization ID
+    tin_organization_id = "Infocert"
+
+    # OpenBank namespace
+    open_bank_namespace = "it.infocert.eudi.open_bank.1"
+
+    # OpenBank doctype
+    open_bank_doctype = "it.infocert.eudi.open_bank.1"
+
+    # OpenBank validity in days
+    open_bank_validity = 90
+
+    # OpenBank issuing Authority
+    open_bank_issuing_authority = "Infocert QEAA issuer"
+
+    # OpenBank Organization ID
+    open_bank_organization_id = "Infocert"
+
+    # Email namespace
+    email_namespace = "it.infocert.eudi.email.1"
+
+    # Email doctype
+    email_doctype = "it.infocert.eudi.email.1"
+
+    # Email validity in days
+    email_validity = 365
+
+    # Email issuing Authority
+    email_issuing_authority = "Infocert QEAA issuer"
+
+    # Email Organization ID
+    email_organization_id = "Infocert"
+
+    # phone namespace
+    phone_namespace = "it.infocert.eudi.phone.1"
+
+    # phone doctype
+    phone_doctype = "it.infocert.eudi.phone.1"
+
+    # phone validity in days
+    phone_validity = 365
+
+    # phone issuing Authority
+    phone_issuing_authority = "Infocert QEAA issuer"
+
+    # phone Organization ID
+    phone_organization_id = "Infocert"
+
     # PID namespace
     pid_namespace = "eu.europa.ec.eudi.pid.1"
 
@@ -128,6 +205,9 @@ class ConfService:
     # ------------------------------------------------------------------------------------------------
     # current version
     current_version = "0.6"
+
+    # Issuing country for credential that needs
+    issuing_country = "IT"
 
     # IANA registered claims
     Registered_claims = {
@@ -244,13 +324,53 @@ class ConfService:
         },
     }
 
-    common_name = {
-        "eu.europa.ec.eudi.pid.1": "National ID",
-        "org.iso.18013.5.1.mDL": "Driving License",
-        "eu.europa.ec.eudi.pseudonym.age_over_18.1": "Age Verification ",
+    common_name={
+        # "eu.europa.ec.eudi.pid.1": "National ID",
+        # "org.iso.18013.5.1.mDL": "Driving License",
+        # "eu.europa.ec.eudi.pseudonym.age_over_18.1": "Age Verification ",
+        "it.infocert.eudi.age_over18.1": "Age Verification",
+        "it.infocert.eudi.open_bank.1": "Opening Bank",
+        "it.infocert.eudi.tin.1": "Tax ID Number",
+        "it.infocert.eudi.email.1": "Email Credential",
+        "it.infocert.eudi.phone.1": "Phone Credential",
     }
 
     config_doctype = {
+        "it.infocert.eudi.age_over18.1":{
+            "issuing_authority": age_over18_issuing_authority,
+            "organization_id": age_over18_organization_id,
+            "validity": age_over18_validity,
+            "organization_name": age_over18_issuing_authority,
+            "namespace": age_over18_namespace,
+        },
+        "it.infocert.eudi.open_bank.1" :{
+            "issuing_authority": open_bank_issuing_authority,
+            "organization_id": open_bank_organization_id,
+            "validity": open_bank_validity,
+            "organization_name": open_bank_issuing_authority,
+            "namespace": open_bank_namespace,
+        },
+        "it.infocert.eudi.tin.1": {
+            "issuing_authority": tin_issuing_authority,
+            "organization_id": tin_organization_id,
+            "validity": tin_validity,
+            "organization_name": tin_issuing_authority,
+            "namespace": tin_namespace,
+        },
+        "it.infocert.eudi.email.1": {
+            "issuing_authority": email_issuing_authority,
+            "organization_id": email_organization_id,
+            "validity": email_validity,
+            "organization_name": email_issuing_authority,
+            "namespace": email_namespace,
+        },
+        "it.infocert.eudi.phone.1": {
+            "issuing_authority": phone_issuing_authority,
+            "organization_id": phone_organization_id,
+            "validity": phone_validity,
+            "organization_name": phone_issuing_authority,
+            "namespace": phone_namespace,
+        },
         "eu.europa.ec.eudi.pid.1": {
             "issuing_authority": pid_issuing_authority,
             "organization_id": pid_organization_id,
@@ -363,6 +483,7 @@ class ConfService:
             "eu.europa.ec.eudi.hiid_mdoc",
             "eu.europa.ec.eudi.tax_mdoc",
             "eu.europa.ec.eudi.msisdn_mdoc",
+            "it.infocert.eudi.age_over18_mdoc"
         ],
         "country_selection": [
             "eu.europa.ec.eudi.loyalty_mdoc",
@@ -377,15 +498,24 @@ class ConfService:
             "eu.europa.ec.eudi.hiid_mdoc",
             "eu.europa.ec.eudi.tax_mdoc",
             "eu.europa.ec.eudi.msisdn_mdoc",
+            "it.infocert.eudi.open_bank_mdoc",
+            "it.infocert.eudi.open_bank_vc_sd_jwt",
+            "it.infocert.eudi.age_over18_mdoc",
+            "it.infocert.eudi.age_over18_vc_sd_jwt",
+            "it.infocert.eudi.tin_mdoc",
+            "it.infocert.eudi.tin_vc_sd_jwt",
+            "it.infocert.eudi.email_mdoc",
+            "it.infocert.eudi.email_vc_sd_jwt",
+            "it.infocert.eudi.phone_mdoc",
+            "it.infocert.eudi.phone_vc_sd_jwt",
             "eu.europa.ec.eudi.ehic_mdoc",
         ],
     }
 
-    # eudi_openid4vp_url = "dev.verifier-backend.eudiw.dev"
-    dynamic_presentation_url = os.getenv(
-        "DYNAMIC_PRESENTATION_URL",
-        "https://verifier-backend.eudiw.dev/ui/presentations/",
-    )
+    #eudi_openid4vp_url = "dev.verifier-backend.eudiw.dev"
+    # dynamic_presentation_url = os.getenv("DYNAMIC_PRESENTATION_URL","https://dev.verifier-backend.eudiw.dev/ui/presentations/")
+    dynamic_presentation_url = os.getenv("DYNAMIC_PRESENTATION_URL","https://verifier-backend.eudiw.dev/ui/presentations/")
+
     dynamic_issuing = {
         "eu.europa.ec.eudi.pseudonym_over18_mdoc": {
             "eu.europa.ec.eudi.pid.1": {"eu.europa.ec.eudi.pid.1": ["age_over_18"]}
@@ -452,6 +582,17 @@ class ConfService:
                     "issuing_country",
                 ]
             }
+        },
+        "eu.europa.ec.eudi.msisdn_mdoc":{
+            "eu.europa.ec.eudi.pid.1":{"eu.europa.ec.eudi.pid.1":["family_name","given_name","birth_date","age_over_18","issuing_authority", "issuing_country"]}
+        },
+        "it.infocert.eudi.open_bank_mdoc":{
+            "eu.europa.ec.eudi.pid.1": {
+                "eu.europa.ec.eudi.pid.1": ["family_name", "given_name", "birth_date", "age_over_18",
+                                            "issuing_authority", "issuing_country"]}
+        },
+        "it.infocert.eudi.age_over18_mdoc": {
+            "eu.europa.ec.eudi.pid.1":{"eu.europa.ec.eudi.pid.1":["age_over_18"]}
         },
     }
 
@@ -535,7 +676,7 @@ class ConfService:
 
     app_logger = logging.getLogger("app_logger")
     app_logger.addHandler(log_handler_info)
-    app_logger.setLevel(logging.INFO)
+    app_logger.setLevel(logging.DEBUG)
 
     """  logger_error = logging.getLogger("error")
     logger_error.addHandler(log_handler_info)

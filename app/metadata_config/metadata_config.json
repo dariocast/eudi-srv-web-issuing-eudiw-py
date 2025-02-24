@@ -1,16 +1,16 @@
 {
-  "credential_issuer": "https://issuer.eudiw.dev",
-  "credential_endpoint": "https://issuer.eudiw.dev/credential",
-  "batch_credential_endpoint": "https://issuer.eudiw.dev/batch_credential",
-  "notification_endpoint": "https://issuer.eudiw.dev/notification",
-  "deferred_credential_endpoint": "https://issuer.eudiw.dev/deferred_credential",
+  "credential_issuer": "https://marmot-civil-gratefully.ngrok-free.app",
+  "credential_endpoint": "https://marmot-civil-gratefully.ngrok-free.app/credential",
+  "batch_credential_endpoint": "https://marmot-civil-gratefully.ngrok-free.app/batch_credential",
+  "notification_endpoint": "https://marmot-civil-gratefully.ngrok-free.app/notification",
+  "deferred_credential_endpoint": "https://marmot-civil-gratefully.ngrok-free.app/deferred_credential",
   "display": [
     {
-    "name": "Digital Credentials Issuer",
+    "name": "Infocert EUDI Credentials Issuer",
     "locale": "en",
     "logo": {
-        "uri": "https://issuer.eudiw.dev/ic-logo.png",
-        "alt_text": "EU Digital Identity Wallet Logo"
+        "uri": "https://www.infocert.it/content/uploads/2021/09/logo.svg",
+        "alt_text": "Infocert Logo"
     }
     }
   ],

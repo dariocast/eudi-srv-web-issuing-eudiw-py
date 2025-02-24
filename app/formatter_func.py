@@ -48,7 +48,7 @@ from app_config.config_countries import ConfCountries as cfgcountries
 from app_config.config_service import ConfService as cfgservice
 from app_config.config_secrets import revocation_api_key
 
-
+# ! TODO: Handle validity properly!!
 def mdocFormatter(data, doctype, country, device_publickey):
     """Construct and sign the mdoc with the country private key
 
@@ -149,15 +149,22 @@ def mdocFormatter(data, doctype, country, device_publickey):
         if response.status_code == 200:
             revocation_json = response.json()
 
+            mdoci.new(
+                doctype=doctype,
+                data=data,
+                validity=validity,
+                devicekeyinfo=device_publickey,
+                cert_path=cfgcountries.supported_countries[country]["pid_mdoc_cert"],
+                revocation=revocation_json
+
+            )
+
     mdoci.new(
         doctype=doctype,
         data=data,
         validity=validity,
         devicekeyinfo=device_publickey,
-        cert_path=cfgcountries.supported_countries[country]["pid_mdoc_cert"],
-        revocation = revocation_json
-                    
-          )
+        cert_path=cfgcountries.supported_countries[country]["pid_mdoc_cert"],)
 
     return base64.urlsafe_b64encode(mdoci.dump()).decode("utf-8")
 

@@ -28,12 +28,8 @@
 
 <body id="responsive-main-nav">
     <div class="main container-fluid">
-        <header role="banner" class="main-header">
-            <div class="container">
-                <div class="row">
-                </div>
-            </div>
-        </header>
+        {% include 'misc/header.html' %}
+
         <div role="main" class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -133,13 +129,8 @@
         </div>
     </div>
 
-    <footer class="main-footer container-fluid" role="contentinfo">
-        <div class="container">
-            <div class="row">
-            </div>
-        </div>
-    </footer>
-    <!-- Version 9.7.1.20 - 23/03/2023 - 09:26 -->
+    {%  include 'misc/footer.html' %}
+
 </body>
 
 </html>

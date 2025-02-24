@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "00e304e1-f364-4a35-8983-89dc2443475c",
+		"name": "IC EUDI Preauth Issuer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25436916"
+	},
+	"item": [
+		{
+			"name": "Preauth Offer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "request",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDAxNTM5OTAsImNyZWRlbnRpYWxzIjpbeyJjcmVkZW50aWFsX2NvbmZpZ3VyYXRpb25faWQiOiJpdC5pbmZvY2VydC5ldWRpLnRpbl9tZG9jIiwiZGF0YSI6eyJ0aW4iOiJJVDEyMzQ1Njc4OTAxIn19XX0.OfH6hftK7fq02aI6S8474hFChg4Ez4-CKBZK7iQt_lc",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{preauthIssuerUrl}}/generateCredentialOffer",
+					"host": [
+						"{{preauthIssuerUrl}}"
+					],
+					"path": [
+						"generateCredentialOffer"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \"https://marmot-civil-gratefully.ngrok-free.app/preauth/credentialOfferReq2\" \\\n     -H \"Content-Type: application/x-www-form-urlencoded\" \\\n     --data-urlencode 'request=eyJjcmVkZW50aWFscyI6W3siY3JlZGVudGlhbF9jb25maWd1cmF0aW9uX2lkIjoiaXQuaW5mb2NlcnQuZXVkaS50aW5fbWRvYyIsImRhdGEiOnsidGluIjoiSVQxMjM0NTY3ODkwMSIsImlzc3VhbmNlX2RhdGUiOiIyMDI1LTAyLTExVDAwOjAwOjAwWiIsImV4cGlyeV9kYXRlIjoiMjAzMC0wMi0xMVQwMDowMDowMFoiLCJpc3N1aW5nX2NvdW50cnkiOiJJVCIsImlzc3VpbmdfYXV0aG9yaXR5IjoiSXRhbGlhbiBSZXZlbnVlIEFnZW5jeSJ9fV19'\n"
+			},
+			"response": [
+				{
+					"name": "Valid JWT Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "request",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzE2OTAwNjcsImNyZWRlbnRpYWxzIjpbeyJjcmVkZW50aWFsX2NvbmZpZ3VyYXRpb25faWQiOiJpdC5pbmZvY2VydC5ldWRpLnRpbl9tZG9jIiwiZGF0YSI6eyJ0aW4iOiJJVDEyMzQ1Njc4OTAxIn19XX0.7_RuNjspJ32OW3LbsGQJpxemDROp3Cl4z2imCDsmMS4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{preauthIssuerUrl}}/generateCredentialOffer",
+							"host": [
+								"{{preauthIssuerUrl}}"
+							],
+							"path": [
+								"generateCredentialOffer"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Valid Unsigned JWT Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "request",
+									"value": "eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJjcmVkZW50aWFscyI6W3siY3JlZGVudGlhbF9jb25maWd1cmF0aW9uX2lkIjoiaXQuaW5mb2NlcnQuZXVkaS50aW5fbWRvYyIsImRhdGEiOnsidGluIjoiSVQxMjM0NTY3ODkwMSJ9fV0sImV4cCI6MTc3MTY5MTI5NX0.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{preauthIssuerUrl}}/generateCredentialOffer",
+							"host": [
+								"{{preauthIssuerUrl}}"
+							],
+							"path": [
+								"generateCredentialOffer"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Valid JWT Request with a Given transaction_id",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "request",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzE2OTAwNjcsImNyZWRlbnRpYWxzIjpbeyJjcmVkZW50aWFsX2NvbmZpZ3VyYXRpb25faWQiOiJpdC5pbmZvY2VydC5ldWRpLnRpbl9tZG9jIiwiZGF0YSI6eyJ0aW4iOiJJVDEyMzQ1Njc4OTAxIn19XX0.7_RuNjspJ32OW3LbsGQJpxemDROp3Cl4z2imCDsmMS4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{preauthIssuerUrl}}/generateCredentialOffer?transaction_id=74bfbe67-a5d9-4a8d-89d4-19927da10d42",
+							"host": [
+								"{{preauthIssuerUrl}}"
+							],
+							"path": [
+								"generateCredentialOffer"
+							],
+							"query": [
+								{
+									"key": "transaction_id",
+									"value": "74bfbe67-a5d9-4a8d-89d4-19927da10d42"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Missing JWT",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "request",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDAxNTM5OTAsImNyZWRlbnRpYWxzIjpbeyJjcmVkZW50aWFsX2NvbmZpZ3VyYXRpb25faWQiOiJpdC5pbmZvY2VydC5ldWRpLnRpbl9tZG9jIiwiZGF0YSI6eyJ0aW4iOiJJVDEyMzQ1Njc4OTAxIn19XX0.OfH6hftK7fq02aI6S8474hFChg4Ez4-CKBZK7iQt_lc",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{preauthIssuerUrl}}/generateCredentialOffer",
+							"host": [
+								"{{preauthIssuerUrl}}"
+							],
+							"path": [
+								"generateCredentialOffer"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Invalid JWT",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "request",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDAxNTQyMTUsImNyZWRlbnRpYWxzIjpbeyJjcmVkZW50aWFsX2NvbmZpZ3VyYXRpb25faWQiOiJpdC5pbmZvY2VydC5ldWRpLnRpbl9tZG9jIiwiZGF0YSI6eyJ0aW4iOiJJVDEyMzQ1Njc4OTAxIn19XX0.a7DL8U-zPrFHPKcChopO7XOhsNkFbPEkGEGSR-QKt9U",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{preauthIssuerUrl}}/generateCredentialOffer",
+							"host": [
+								"{{preauthIssuerUrl}}"
+							],
+							"path": [
+								"generateCredentialOffer"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Expired JWT",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "request",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDAxNTM3MDAsImNyZWRlbnRpYWxzIjpbeyJjcmVkZW50aWFsX2NvbmZpZ3VyYXRpb25faWQiOiJpdC5pbmZvY2VydC5ldWRpLnRpbl9tZG9jIiwiZGF0YSI6eyJ0aW4iOiJJVDEyMzQ1Njc4OTAxIn19XX0.K_yLxboAt4Uk83n9ewgji60hgVczPA1SMhOGWUVtZuM",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{preauthIssuerUrl}}/generateCredentialOffer",
+							"host": [
+								"{{preauthIssuerUrl}}"
+							],
+							"path": [
+								"generateCredentialOffer"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "preauthIssuerUrl",
+			"value": "https://marmot-civil-gratefully.ngrok-free.app",
+			"type": "string"
+		}
+	]
+}
