@@ -31,5 +31,5 @@ git+https://github.com/rohe/fedservice.git@a4bef2e3f230f4b07c6ef45e4c8be55778d05
 git+https://github.com/rohe/idpy-sdjwt.git@de1715ef89c7f3db5daf3cdc53fec26d6ade03d9
 
 # Test dependencies
-pytest
-pytest-mock
+pytest>=7.1.0
+pytest-mock>=3.0.0
