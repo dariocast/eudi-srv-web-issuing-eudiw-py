@@ -48,7 +48,7 @@ from app_config.config_countries import ConfCountries as cfgcountries
 from app_config.config_service import ConfService as cfgservice
 from app_config.config_secrets import revocation_api_key
 
-
+# ! TODO: Handle validity properly!!
 def mdocFormatter(data, doctype, country, device_publickey):
     """Construct and sign the mdoc with the country private key
 
