@@ -37,7 +37,7 @@
         }
       }
     ],
-    "vct": "it.infocert.eudi.age_over18_vc_sd_jwt",
+    "vct": "urn:it.infocert.eudi:age_over18:1",
     "claims": {
       "user_pseudonym": {
         "mandatory": true,

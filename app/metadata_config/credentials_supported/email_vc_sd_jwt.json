@@ -37,7 +37,7 @@
           }
         }
       ],
-    "vct": "it.infocert.eudi.email_vc_sd_jwt",
+    "vct": "urn:it.infocert.eudi:email:1",
     "claims": {
       "email_address": {
         "mandatory": true,

@@ -31,7 +31,7 @@
         ]
       }
     },
-    "vct": "it.infocert.eudi.open_bank_vc_sd_jwt",
+    "vct": "urn:it.infocert.eudi:open_bank:1",
     "claims": {
       "given_name": {
         "mandatory": true,

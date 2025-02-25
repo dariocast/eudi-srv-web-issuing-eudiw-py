@@ -37,7 +37,7 @@
         }
       }
     ],
-    "vct": "it.infocert.eudi.tin_vc_sd_jwt",
+    "vct": "urn:it.infocert.eudi:tin:1",
     "claims": {
       "tin": {
         "mandatory": true,
