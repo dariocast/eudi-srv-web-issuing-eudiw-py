@@ -37,7 +37,7 @@
           }
         }
       ],
-    "vct": "it.infocert.eudi.phone_vc_sd_jwt",
+    "vct": "urn:it.infocert.eudi:phone:1",
     "claims": {
       "phone_number": {
         "mandatory": true,

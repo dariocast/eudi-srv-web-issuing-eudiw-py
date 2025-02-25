@@ -203,7 +203,7 @@ def cbor2elems(mdoc):
         d[n] = l
     return d
 
-
+# TODO: Evaluate SD-JWT (currently only pid and mdl custom vertical code).
 def sdjwtFormatter(PID, country):
     """Construct sd-jwt with the country private key
 

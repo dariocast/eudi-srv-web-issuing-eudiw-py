@@ -54,6 +54,7 @@ openid_metadata = {}
 oauth_metadata = {}
 trusted_CAs = {}
 
+from jinja2 import Template
 
 def setup_metadata():
     global oidc_metadata
@@ -67,15 +68,19 @@ def setup_metadata():
         with open(
             dir_path + "/metadata_config/openid-configuration.json"
         ) as openid_metadata:
-            openid_metadata = json.load(openid_metadata)
-        
+            template = Template(openid_metadata.read())
+            rendered_openid_metadata = template.render(SERVICE_URL=cfgserv.service_url[:-1])
+            openid_metadata = json.loads(rendered_openid_metadata)
+
         with open(
             dir_path + "/metadata_config/oauth-authorization-server.json"
         ) as oauth_metadata:
             oauth_metadata = json.load(oauth_metadata)
 
         with open(dir_path + "/metadata_config/metadata_config.json") as metadata:
-            oidc_metadata = json.load(metadata)
+            template = Template(metadata.read())
+            rendered_metadata = template.render(SERVICE_URL=cfgserv.service_url[:-1])
+            oidc_metadata = json.loads(rendered_metadata)
 
         for file in os.listdir(dir_path + "/metadata_config/credentials_supported/"):
             if file.endswith("json"):

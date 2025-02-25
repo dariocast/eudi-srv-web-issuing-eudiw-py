@@ -20,11 +20,10 @@
 Configuration of service secrets
 """
 
-flask_secret_key = "secret_here"
+import os
 
-# eIDAS secret connector request
-# Defined in eIDAS node service file specificConnector/specificCommunicationDefinitionConnector.xml,
-#                                   entry key="lightToken.connector.request.secret"
-eidasnode_lightToken_secret = "secret_here"
+flask_secret_key = os.getenv("FLASK_SECRET_KEY", "secret_here")
+eidasnode_lightToken_secret = os.getenv("EIDASNODE_LIGHTTOKEN_SECRET", "secret_here")
+revocation_api_key = os.getenv("REVOCATION_API_KEY", None)
+hmac_secret = os.getenv("HMAC_SECRET", "")  # Default empty, meaning no HMAC check in JWT request
 
-revocation_api_key = "secret_here"

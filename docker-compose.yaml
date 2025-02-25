@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  infocert-srv:
+    platform: linux/amd64
+    image: public.ecr.aws/dizme.io/eulsp/infocert-srv-web-issuing-eudiw-py:0.0.1-CL
+    container_name: infocert-srv
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_APP: "app"
+      FLASK_RUN_PORT: "5000"
+      FLASK_RUN_HOST: "0.0.0.0"
+      SERVICE_URL: "https://marmot-civil-gratefully.ngrok-free.app/"
+      FLASK_SECRET_KEY: "Rfyp=BxBeq"
+      HMAC_SECRET: ""
+    command: >
+      sh -c "/root/eudi-srv-web-issuing-eudiw-py/venv/bin/flask run"
