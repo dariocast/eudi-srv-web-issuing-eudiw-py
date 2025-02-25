@@ -106,7 +106,7 @@ class ConfService:
     tin_doctype = "it.infocert.eudi.tin.1"
 
     # TIN validity in days
-    tin_validity = 90
+    tin_validity = 1000
 
     # TIN issuing Authority
     tin_issuing_authority = "Infocert QEAA issuer"
@@ -121,7 +121,7 @@ class ConfService:
     open_bank_doctype = "it.infocert.eudi.open_bank.1"
 
     # OpenBank validity in days
-    open_bank_validity = 90
+    open_bank_validity = 1000
 
     # OpenBank issuing Authority
     open_bank_issuing_authority = "Infocert QEAA issuer"
@@ -136,7 +136,7 @@ class ConfService:
     email_doctype = "it.infocert.eudi.email.1"
 
     # Email validity in days
-    email_validity = 365
+    email_validity = 1000
 
     # Email issuing Authority
     email_issuing_authority = "Infocert QEAA issuer"
@@ -151,7 +151,7 @@ class ConfService:
     phone_doctype = "it.infocert.eudi.phone.1"
 
     # phone validity in days
-    phone_validity = 365
+    phone_validity = 1000
 
     # phone issuing Authority
     phone_issuing_authority = "Infocert QEAA issuer"
