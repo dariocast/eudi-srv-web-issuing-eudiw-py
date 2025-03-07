@@ -1,0 +1,71 @@
+{
+	"it.infocert.eudi.identity_mdoc": {
+		"format": "mso_mdoc",
+		"doctype": "it.infocert.eudi.identity.1",
+		"scope": "it.infocert.eudi.identity.1",
+		"policy": {
+			"batch_size": 50,
+			"one_time_use": true
+		},
+		"cryptographic_binding_methods_supported": [
+			"jwk", "cose_key"
+		],
+		"credential_alg_values_supported": [
+			-7
+		],
+		"credential_crv_values_supported": [
+			1
+		],
+		"credential_signing_alg_values_supported": [
+			"ES256"
+		],
+		"proof_types_supported": {
+			"jwt": {
+				"proof_signing_alg_values_supported": [
+					"ES256"
+				]
+			},
+			"cwt": {
+				"proof_signing_alg_values_supported": [
+					"ES256"
+				],
+				"proof_alg_values_supported": [
+					-7
+				],
+				"proof_crv_values_supported": [
+					1
+				]
+			}
+		},
+		"display": [{
+			"name": "Identity",
+			"locale": "en",
+			"logo": {
+				"uri": "https://as1.ftcdn.net/jpg/03/06/00/54/1000_F_306005413_CJxMUp3Ie3iLra1yLD3oJpzfdFBHGCiJ.jpg",
+				"alt_text": "A square figure of an Identity"
+			}
+		}],
+		"claims": {
+			"it.infocert.eudi.identity.1": {
+				"given_name": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "First Name",
+						"locale": "en"
+					}]
+				},
+				"family_name": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "Last Name",
+						"locale": "en"
+					}]
+				}
+			}
+		}
+	}
+}

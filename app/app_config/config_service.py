@@ -159,6 +159,21 @@ class ConfService:
     # phone Organization ID
     phone_organization_id = "Infocert"
 
+    # phone namespace
+    identity_namespace = "it.infocert.eudi.identity.1"
+
+    # phone doctype
+    identity_doctype = "it.infocert.eudi.identity.1"
+
+    # phone validity in days
+    identity_validity = 365
+
+    # phone issuing Authority
+    identity_issuing_authority = "Infocert QEAA issuer"
+
+    # phone Organization ID
+    identity_organization_id = "Infocert"
+
     # PID namespace
     pid_namespace = "eu.europa.ec.eudi.pid.1"
 
@@ -333,6 +348,7 @@ class ConfService:
         "it.infocert.eudi.tin.1": "Tax ID Number",
         "it.infocert.eudi.email.1": "Email Credential",
         "it.infocert.eudi.phone.1": "Phone Credential",
+        "it.infocert.eudi.identity.1": "Identity Credential",
     }
 
     config_doctype = {
@@ -370,6 +386,13 @@ class ConfService:
             "validity": phone_validity,
             "organization_name": phone_issuing_authority,
             "namespace": phone_namespace,
+        },
+        "it.infocert.eudi.identity.1": {
+            "issuing_authority": identity_issuing_authority,
+            "organization_id": identity_organization_id,
+            "validity": identity_validity,
+            "organization_name": identity_issuing_authority,
+            "namespace": identity_namespace,
         },
         "eu.europa.ec.eudi.pid.1": {
             "issuing_authority": pid_issuing_authority,
@@ -508,6 +531,8 @@ class ConfService:
             "it.infocert.eudi.email_vc_sd_jwt",
             "it.infocert.eudi.phone_mdoc",
             "it.infocert.eudi.phone_vc_sd_jwt",
+            "it.infocert.eudi.identity_mdoc",
+            "it.infocert.eudi.identity_vc_sd_jwt",
             "eu.europa.ec.eudi.ehic_mdoc",
         ],
     }
