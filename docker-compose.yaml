@@ -1,10 +1,10 @@
 version: "3.8"
 
 services:
-  infocert-srv:
+  unisa-srv:
     platform: linux/amd64
     image: public.ecr.aws/dizme.io/eulsp/infocert-srv-web-issuing-eudiw-py:0.0.1-CL
-    container_name: infocert-srv
+    container_name: unisa-srv
     restart: always
     ports:
       - "5000:5000"

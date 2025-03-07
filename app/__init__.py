@@ -26,7 +26,7 @@ import json
 import os
 import sys
 
-from .usecases import usecases_bp
+from jinja2 import Template
 
 sys.path.append(os.path.dirname(__file__))
 
@@ -67,9 +67,11 @@ def setup_metadata():
         dir_path = os.path.dirname(os.path.realpath(__file__))
 
         with open(
-            dir_path + "/metadata_config/openid-configuration.json"
+                dir_path + "/metadata_config/openid-configuration.json"
         ) as openid_metadata:
-            openid_metadata = json.load(openid_metadata)
+            template = Template(openid_metadata.read())
+            rendered_openid_metadata = template.render(SERVICE_URL=cfgserv.service_url[:-1])
+            openid_metadata = json.loads(rendered_openid_metadata)
 
         with open(
             dir_path + "/metadata_config/oauth-authorization-server.json"
@@ -77,7 +79,9 @@ def setup_metadata():
             oauth_metadata = json.load(oauth_metadata)
 
         with open(dir_path + "/metadata_config/metadata_config.json") as metadata:
-            oidc_metadata = json.load(metadata)
+            template = Template(metadata.read())
+            rendered_metadata = template.render(SERVICE_URL=cfgserv.service_url[:-1])
+            oidc_metadata = json.loads(rendered_metadata)
 
         for file in os.listdir(dir_path + "/metadata_config/credentials_supported/"):
             if file.endswith("json"):
@@ -262,7 +266,6 @@ def create_app(test_config=None):
     app.register_blueprint(route_oid4vp.oid4vp)
     app.register_blueprint(route_dynamic.dynamic)
     app.register_blueprint(preauthorization.preauth)
-    app.register_blueprint(usecases_bp)
 
     # config session
     app.config["SESSION_FILE_THRESHOLD"] = 50

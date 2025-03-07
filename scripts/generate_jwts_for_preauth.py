@@ -12,8 +12,9 @@ HMAC_SECRET = hmac_secret
 base_payload = {
     "credentials": [
         {
-            "credential_configuration_id": "it.infocert.eudi.tin_mdoc",
+            "credential_configuration_id": "it.unisa.credentials.elm_mdoc",
             "data": {
+                # TODO: Fix with actual values
                 "tin": "IT12345678901"
             }
         }

@@ -84,96 +84,6 @@ class ConfService:
     form_expiry = 60
 
     # ------------------------------------------------------------------------------------------------
-    # AgeOver18 namespace
-    age_over18_namespace = "it.infocert.eudi.age_over18.1"
-
-    # AgeOver18 doctype
-    age_over18_doctype = "it.infocert.eudi.age_over18.1"
-
-    # AgeOver18 validity in days
-    age_over18_validity = 90
-
-    # AgeOver18 issuing Authority
-    age_over18_issuing_authority = "Infocert QEAA issuer"
-
-    # AgeOver18 Organization ID
-    age_over18_organization_id = "Infocert"
-
-    # TIN namespace
-    tin_namespace = "it.infocert.eudi.tin.1"
-
-    # TIN doctype
-    tin_doctype = "it.infocert.eudi.tin.1"
-
-    # TIN validity in days
-    tin_validity = 1000
-
-    # TIN issuing Authority
-    tin_issuing_authority = "Infocert QEAA issuer"
-
-    # TIN Organization ID
-    tin_organization_id = "Infocert"
-
-    # OpenBank namespace
-    open_bank_namespace = "it.infocert.eudi.open_bank.1"
-
-    # OpenBank doctype
-    open_bank_doctype = "it.infocert.eudi.open_bank.1"
-
-    # OpenBank validity in days
-    open_bank_validity = 1000
-
-    # OpenBank issuing Authority
-    open_bank_issuing_authority = "Infocert QEAA issuer"
-
-    # OpenBank Organization ID
-    open_bank_organization_id = "Infocert"
-
-    # Email namespace
-    email_namespace = "it.infocert.eudi.email.1"
-
-    # Email doctype
-    email_doctype = "it.infocert.eudi.email.1"
-
-    # Email validity in days
-    email_validity = 1000
-
-    # Email issuing Authority
-    email_issuing_authority = "Infocert QEAA issuer"
-
-    # Email Organization ID
-    email_organization_id = "Infocert"
-
-    # phone namespace
-    phone_namespace = "it.infocert.eudi.phone.1"
-
-    # phone doctype
-    phone_doctype = "it.infocert.eudi.phone.1"
-
-    # phone validity in days
-    phone_validity = 1000
-
-    # phone issuing Authority
-    phone_issuing_authority = "Infocert QEAA issuer"
-
-    # phone Organization ID
-    phone_organization_id = "Infocert"
-
-    # phone namespace
-    identity_namespace = "it.infocert.eudi.identity.1"
-
-    # phone doctype
-    identity_doctype = "it.infocert.eudi.identity.1"
-
-    # phone validity in days
-    identity_validity = 365
-
-    # phone issuing Authority
-    identity_issuing_authority = "Infocert QEAA issuer"
-
-    # phone Organization ID
-    identity_organization_id = "Infocert"
-
     # PID namespace
     pid_namespace = "eu.europa.ec.eudi.pid.1"
 
@@ -212,6 +122,18 @@ class ConfService:
 
     # QEAA doctype
     qeaa_doctype = "eu.europa.ec.eudiw.qeaa.1"
+
+    # unisa namespace
+    unisa_namespace = "it.unisa.credentials.elm.1"
+
+    # unisa validity in days
+    unisa_validity = 365
+
+    # unisa issuing Authority
+    unisa_issuing_authority = "University of Salerno"
+
+    # unisa doctype
+    unisa_doctype = "it.unisa.credentials.elm.1"
 
     # OIDC4VC URL for initial page
     oidc = service_url + ".well-known/openid-credential-issuer"
@@ -343,56 +265,16 @@ class ConfService:
         # "eu.europa.ec.eudi.pid.1": "National ID",
         # "org.iso.18013.5.1.mDL": "Driving License",
         # "eu.europa.ec.eudi.pseudonym.age_over_18.1": "Age Verification ",
-        "it.infocert.eudi.age_over18.1": "Age Verification",
-        "it.infocert.eudi.open_bank.1": "Opening Bank",
-        "it.infocert.eudi.tin.1": "Tax ID Number",
-        "it.infocert.eudi.email.1": "Email Credential",
-        "it.infocert.eudi.phone.1": "Phone Credential",
-        "it.infocert.eudi.identity.1": "Identity Credential",
+        "it.unisa.credentials.elm.1": "Unisa Learning Credential",
     }
 
     config_doctype = {
-        "it.infocert.eudi.age_over18.1":{
-            "issuing_authority": age_over18_issuing_authority,
-            "organization_id": age_over18_organization_id,
-            "validity": age_over18_validity,
-            "organization_name": age_over18_issuing_authority,
-            "namespace": age_over18_namespace,
-        },
-        "it.infocert.eudi.open_bank.1" :{
-            "issuing_authority": open_bank_issuing_authority,
-            "organization_id": open_bank_organization_id,
-            "validity": open_bank_validity,
-            "organization_name": open_bank_issuing_authority,
-            "namespace": open_bank_namespace,
-        },
-        "it.infocert.eudi.tin.1": {
-            "issuing_authority": tin_issuing_authority,
-            "organization_id": tin_organization_id,
-            "validity": tin_validity,
-            "organization_name": tin_issuing_authority,
-            "namespace": tin_namespace,
-        },
-        "it.infocert.eudi.email.1": {
-            "issuing_authority": email_issuing_authority,
-            "organization_id": email_organization_id,
-            "validity": email_validity,
-            "organization_name": email_issuing_authority,
-            "namespace": email_namespace,
-        },
-        "it.infocert.eudi.phone.1": {
-            "issuing_authority": phone_issuing_authority,
-            "organization_id": phone_organization_id,
-            "validity": phone_validity,
-            "organization_name": phone_issuing_authority,
-            "namespace": phone_namespace,
-        },
-        "it.infocert.eudi.identity.1": {
-            "issuing_authority": identity_issuing_authority,
-            "organization_id": identity_organization_id,
-            "validity": identity_validity,
-            "organization_name": identity_issuing_authority,
-            "namespace": identity_namespace,
+        "it.unisa.credentials.elm.1":{
+            "issuing_authority": unisa_issuing_authority,
+            "organization_id": unisa_issuing_authority,
+            "validity": unisa_validity,
+            "organization_name": unisa_issuing_authority,
+            "namespace": unisa_namespace,
         },
         "eu.europa.ec.eudi.pid.1": {
             "issuing_authority": pid_issuing_authority,
@@ -505,35 +387,10 @@ class ConfService:
             "eu.europa.ec.eudi.iban_mdoc",
             "eu.europa.ec.eudi.hiid_mdoc",
             "eu.europa.ec.eudi.tax_mdoc",
-            "eu.europa.ec.eudi.msisdn_mdoc",
-            "it.infocert.eudi.age_over18_mdoc"
+            "eu.europa.ec.eudi.msisdn_mdoc"
         ],
         "country_selection": [
-            "eu.europa.ec.eudi.loyalty_mdoc",
-            "eu.europa.ec.eudi.mdl_mdoc",
-            "eu.europa.ec.eudi.pid_jwt_vc_json",
-            "eu.europa.ec.eudi.pid_mdoc",
-            "eu.europa.ec.eudi.pseudonym_over18_mdoc",
-            "eu.europa.ec.eudi.pseudonym_over18_mdoc_deferred_endpoint",
-            "eu.europa.ec.eudi.photoid",
-            "eu.europa.ec.eudi.por_mdoc",
-            "eu.europa.ec.eudi.iban_mdoc",
-            "eu.europa.ec.eudi.hiid_mdoc",
-            "eu.europa.ec.eudi.tax_mdoc",
-            "eu.europa.ec.eudi.msisdn_mdoc",
-            "it.infocert.eudi.open_bank_mdoc",
-            "it.infocert.eudi.open_bank_vc_sd_jwt",
-            "it.infocert.eudi.age_over18_mdoc",
-            "it.infocert.eudi.age_over18_vc_sd_jwt",
-            "it.infocert.eudi.tin_mdoc",
-            "it.infocert.eudi.tin_vc_sd_jwt",
-            "it.infocert.eudi.email_mdoc",
-            "it.infocert.eudi.email_vc_sd_jwt",
-            "it.infocert.eudi.phone_mdoc",
-            "it.infocert.eudi.phone_vc_sd_jwt",
-            "it.infocert.eudi.identity_mdoc",
-            "it.infocert.eudi.identity_vc_sd_jwt",
-            "eu.europa.ec.eudi.ehic_mdoc",
+            "it.unisa.credentials.elm_mdoc",
         ],
     }
 
@@ -610,14 +467,6 @@ class ConfService:
         },
         "eu.europa.ec.eudi.msisdn_mdoc":{
             "eu.europa.ec.eudi.pid.1":{"eu.europa.ec.eudi.pid.1":["family_name","given_name","birth_date","age_over_18","issuing_authority", "issuing_country"]}
-        },
-        "it.infocert.eudi.open_bank_mdoc":{
-            "eu.europa.ec.eudi.pid.1": {
-                "eu.europa.ec.eudi.pid.1": ["family_name", "given_name", "birth_date", "age_over_18",
-                                            "issuing_authority", "issuing_country"]}
-        },
-        "it.infocert.eudi.age_over18_mdoc": {
-            "eu.europa.ec.eudi.pid.1":{"eu.europa.ec.eudi.pid.1":["age_over_18"]}
         },
     }
 
