@@ -6,11 +6,11 @@
   "deferred_credential_endpoint": "{{SERVICE_URL}}/deferred_credential",
   "display": [
     {
-    "name": "Infocert EUDI Credentials Issuer",
+    "name": "Unisa Pub-EAA Issuer",
     "locale": "en",
     "logo": {
-        "uri": "https://www.infocert.it/content/uploads/2021/09/logo.svg",
-        "alt_text": "Infocert Logo"
+        "uri": "{{SERVICE_URL}}/static/logo_unisa_standard.png",
+        "alt_text": "Unisa Logo"
     }
     }
   ],

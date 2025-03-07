@@ -1,0 +1,228 @@
+{
+	"it.unisa.credentials.elm_mdoc": {
+		"format": "mso_mdoc",
+		"doctype": "it.unisa.credentials.elm.1",
+		"scope": "it.unisa.credentials.elm.1",
+		"policy": {
+			"batch_size": 50,
+			"one_time_use": false
+		},
+		"cryptographic_binding_methods_supported": [
+			"jwk", "cose_key"
+		],
+		"credential_alg_values_supported": [
+			-7
+		],
+		"credential_crv_values_supported": [
+			1
+		],
+		"credential_signing_alg_values_supported": [
+			"ES256"
+		],
+		"proof_types_supported": {
+			"jwt": {
+				"proof_signing_alg_values_supported": [
+					"ES256"
+				]
+			},
+			"cwt": {
+				"proof_signing_alg_values_supported": [
+					"ES256"
+				],
+				"proof_alg_values_supported": [
+					-7
+				],
+				"proof_crv_values_supported": [
+					1
+				]
+			}
+		},
+		"display": [{
+			"name": "Unisa ELM Credential",
+			"locale": "en",
+			"logo": {
+				"uri": "https://examplestate.com/public/elm.png",
+				"alt_text": "ELM Credential Logo"
+			}
+		}],
+		"claims": {
+			"it.unisa.credentials.elm.1": {
+				"givenName": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "The given name(s) of the person.",
+						"locale": "en"
+					}]
+				},
+				"familyName": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "The family name of the person.",
+						"locale": "en"
+					}]
+				},
+				"nationalID": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "The 'primary' national identifier of the person.",
+						"locale": "en"
+					}]
+				},
+				"citizenshipCountryCode": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "Alpha-2 country code, representing the country that conferred citizenship rights on the person.",
+						"locale": "en"
+					}]
+				},
+				"type": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "The type of the credential",
+						"locale": "en"
+					}]
+				},
+				"title": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "The full official title of the issued credential (maximum 50 characters).",
+						"locale": "en"
+					}]
+				},
+				"awardingDate": {
+					"mandatory": true,
+					"source": "user",
+					"display": [{
+						"name": "The date when title was awarded.",
+						"locale": "en"
+					}]
+				},
+				"awardingBody_legalName": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "The primary name of the organisation.",
+						"locale": "en"
+					}]
+				},
+				"awardingBody_registration": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "The legal identifier of an organization. The identifier given to a registered organization by the authority with which it is registered. The legal status of a registered organization is conferred on it by an authority within a given jurisdiction. The Legal Identifier is therefore a fundamental relationship between an organization and the authority with which it is registered.",
+						"locale": "en"
+					}]
+				},
+				"awardingBody_countryCode": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "Alpha-2 country code, identifying a spatial scope in which this physical location is located.",
+						"locale": "en"
+					}]
+				},
+				"creditPoint": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "The credit points assigned to the learning specification, following the ECTS credit system.",
+						"locale": "en"
+					}]
+				},
+				"creditValue": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "The credit points assigned to the learning specification, following an alternative educational credit system.",
+						"locale": "en"
+					}]
+				},
+				"maximumDuration": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "The maximum months of the learner is expected to spend engaged in learning to earn the award.",
+						"locale": "en"
+					}]
+				},
+				"thematicArea": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "Thematic Area according to the ISCED-F 2013 Classification.",
+						"locale": "en"
+					}]
+				},
+				"nqfLevel": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "National Qualification framework level.",
+						"locale": "en"
+					}]
+				},
+				"eqfLevel": {
+					"mandatory": true,
+					"value_type": "string",
+					"source": "user",
+					"display": [{
+						"name": "An associated level of education within a semantic framework describing education levels.",
+						"locale": "en"
+					}]
+				},
+				"issuance_date": {
+					"mandatory": true,
+					"source": "issuer",
+					"display": [{
+						"name": "The date when the accreditation was formally approved/issued.",
+						"locale": "en"
+					}]
+				},
+				"expiry_date": {
+					"mandatory": true,
+					"source": "issuer",
+					"display": [{
+						"name": "Alpha-2 country code, representing the nationality of the PID User.",
+						"locale": "en"
+					}]
+				},
+				"issuing_authority": {
+					"mandatory": true,
+					"source": "issuer",
+					"display": [{
+						"name": "Issuance Authority",
+						"locale": "en"
+					}]
+				},
+				"issuing_country": {
+					"mandatory": true,
+					"source": "issuer",
+					"display": [{
+						"name": "Issuing Country",
+						"locale": "en"
+					}]
+				}
+			}
+		}
+	}
+}

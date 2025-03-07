@@ -10,13 +10,6 @@ from app.app_config.config_secrets import hmac_secret
 # Configure HMAC Secret (Same as used in `cfgservice`)
 HMAC_SECRET = hmac_secret
 
-@pytest.fixture
-def client():
-    """Create a test client for Flask"""
-    app = create_app()  # ✅ Call the factory function
-    app.config["TESTING"] = True
-    return app.test_client()
-
 def create_valid_jwt():
     """Generate a valid JWT for testing"""
     payload = {

@@ -373,71 +373,63 @@ def generateCredentialOffer():
             return jsonify({"error": "JWT has expired"}), 401
         except InvalidTokenError:
             return jsonify({"error": "Invalid JWT"}), 400
-
-        # Extract data from JWT payload
-        authorization_details = []
-        credential_ids = []
-
-        for credential in decoded_payload["credentials"]:
-            authorization_details.append({
-                "type": "openid_credential",
-                "credential_configuration_id": credential["credential_configuration_id"]
-            })
-            if credential["credential_configuration_id"] not in credential_ids:
-                credential_ids.append(credential["credential_configuration_id"])
-
-        data = decoded_payload["credentials"][0]["data"]
-
-        pre_auth_code = generate_preauth_token(data=data, authorization_details=authorization_details)
-
         # Handle transaction_id, generate if missing
         transaction_id = request.args.get("transaction_id", generate_unique_id())
-        tx_code = random.randint(10000, 99999)
 
-        transaction_codes[transaction_id] = {
-            "pre_auth_code": pre_auth_code,
-            "tx_code": str(tx_code),
-            "expires": datetime.now() + timedelta(minutes=cfgservice.tx_code_expiry)
-        }
-
-        credential_offer = {
-            "credential_issuer": cfgservice.service_url.rstrip('/'),
-            "credential_configuration_ids": credential_ids,
-            "grants": {
-                "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
-                    "pre-authorized_code": transaction_id,
-                    "tx_code": {
-                        "length": 5,
-                        "input_mode": "numeric",
-                        "description": "Please provide the one-time code.",
-                        "value": tx_code
-                    }
-                }
-            }
-        }
-
-        json_string = json.dumps(credential_offer)
-        uri = f"openid-credential-offer://credential_offer?credential_offer=" + urllib.parse.quote(json_string, safe=":/")
-
-        # Generate QR Code
-        qrcode = segno.make(uri)
-        out = io.BytesIO()
-        qrcode.save(out, kind='png', scale=3)
-        qr_img_base64 = "data:image/png;base64," + base64.b64encode(out.getvalue()).decode("utf-8")
-
-        return jsonify({
-            "credential_offer": credential_offer,
-            "uri": uri,
-            "qr_code": qr_img_base64,
-            "tx_code": tx_code,
-            "transaction_id": transaction_id
-        })
+        return preauthorized_offer(decoded_payload,transaction_id=transaction_id)
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 
-
+def preauthorized_offer(payload, transaction_id=None, tx_code=None):
+    # Extract data from JWT payload
+    authorization_details = []
+    credential_ids = []
+    for credential in payload["credentials"]:
+        authorization_details.append({
+            "type": "openid_credential",
+            "credential_configuration_id": credential["credential_configuration_id"]
+        })
+        if credential["credential_configuration_id"] not in credential_ids:
+            credential_ids.append(credential["credential_configuration_id"])
+    data = payload["credentials"][0]["data"]
+    pre_auth_code = generate_preauth_token(data=data, authorization_details=authorization_details)
+    tx_code = random.randint(10000, 99999) if not tx_code else tx_code
+    transaction_codes[transaction_id] = {
+        "pre_auth_code": pre_auth_code,
+        "tx_code": str(tx_code),
+        "expires": datetime.now() + timedelta(minutes=cfgservice.tx_code_expiry)
+    }
+    credential_offer = {
+        "credential_issuer": cfgservice.service_url.rstrip('/'),
+        "credential_configuration_ids": credential_ids,
+        "grants": {
+            "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
+                "pre-authorized_code": transaction_id,
+                "tx_code": {
+                    "length": 5,
+                    "input_mode": "numeric",
+                    "description": "Please provide the one-time code.",
+                    "value": tx_code
+                }
+            }
+        }
+    }
+    json_string = json.dumps(credential_offer)
+    uri = f"openid-credential-offer://credential_offer?credential_offer=" + urllib.parse.quote(json_string, safe=":/")
+    # Generate QR Code
+    qrcode = segno.make(uri)
+    out = io.BytesIO()
+    qrcode.save(out, kind='png', scale=3)
+    qr_img_base64 = "data:image/png;base64," + base64.b64encode(out.getvalue()).decode("utf-8")
+    return jsonify({
+        "credential_offer": credential_offer,
+        "uri": uri,
+        "qr_code": qr_img_base64,
+        "tx_code": tx_code,
+        "transaction_id": transaction_id
+    })
 
 
 def generate_preauth_token(data, authorization_details):

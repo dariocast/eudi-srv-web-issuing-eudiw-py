@@ -31,7 +31,7 @@ This API generates a **credential offer** for the EUDI Wallet, based on a signed
   "exp": 1733980800, 
   "credentials": [
     {
-      "credential_configuration_id": "it.infocert.eudi.tin_mdoc",
+      "credential_configuration_id": "it.unisa.credentials.elm_mdoc",
       "data": {
         "tin": "IT12345678901",
         //        ANY OTHER FIELD MARKED AS "user" IN THE "credential_supported" METADATA
@@ -60,7 +60,7 @@ This API generates a **credential offer** for the EUDI Wallet, based on a signed
 {
   "credential_offer": {
     "credential_issuer": "https://issuer.example.com",
-    "credential_configuration_ids": ["it.infocert.eudi.tin_mdoc"],
+    "credential_configuration_ids": ["it.unisa.credentials.elm_mdoc"],
     "grants": {
       "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
         "pre-authorized_code": "mocked_transaction_id",
