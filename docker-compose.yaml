@@ -3,7 +3,7 @@ version: "3.8"
 services:
   unisa-srv:
     platform: linux/amd64
-    image: public.ecr.aws/dizme.io/eulsp/infocert-srv-web-issuing-eudiw-py:0.0.1-CL
+    image: dariocast/unisa-eudiw-issuing:v1.0.0
     container_name: unisa-srv
     restart: always
     ports:
