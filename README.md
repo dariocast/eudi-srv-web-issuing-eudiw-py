@@ -10,21 +10,12 @@ the [EUDI Wallet Reference Implementation project description](https://github.co
 
 The EUDIW Issuer is an implementation of  the PID and (Q)EAA Provider service, supporting the OpenId4VCI (draft 13) protocol.
 
-The service provides, by default, support for `mso_mdoc` and `SD-JWT-VC`formats, for the following credentials:
+The service provides, by default, support for `mso_mdoc` for the following credentials:
 
 
 | Credential/Attestation       | Format    |
 |------------------------------|-----------|
-| TIN                          | mso_mdoc  |
-| TIN                          | SD-JWT-VC |
-| Email Credential             | mso_mdoc  | 
-| Email Credential             | SD-JWT-VC  |
-| Phone Credential             | mso_mdoc  | 
-| Phone Credential             | SD-JWT-VC  | 
-| Open Bank Credential         | mso_mdoc  | 
-| Open Bank Credential         | SD-JWT-VC  | 
-| (Q)EAA age-over-18 pseudonym | mso_mdoc |
-| (Q)EAA age-over-18 pseudonym | SD-JWT-VC |
+| ELM                          | mso_mdoc |
 
 For authenticating the user, it requires the use of eIDAS node, OAUTH2 server or a simple form.
 
@@ -58,7 +49,7 @@ This version of the EUDIW Issuer supports the [OpenId for Verifiable Credential 
 | PKCE                                                              | ✅                                                              |
 
 
-You can use the EUDIW Issuer at https://issuer.eudiw.dev/, or install it locally.
+You can use the EUDIW Issuer at https://unisa-diploma.shev.pro/, or install it locally.
 
 
 ## :heavy_exclamation_mark: Disclaimer

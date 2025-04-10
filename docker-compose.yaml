@@ -3,7 +3,7 @@ version: "3.8"
 services:
   unisa-srv:
     platform: linux/amd64
-    image: dariocast/unisa-eudiw-issuing:v1.0.0
+    image: dariocast/unisa-eudiw-issuing:v1.0.1
     container_name: unisa-srv
     restart: always
     ports:
@@ -14,6 +14,7 @@ services:
       FLASK_RUN_HOST: "0.0.0.0"
       SERVICE_URL: "https://marmot-civil-gratefully.ngrok-free.app/"
       FLASK_SECRET_KEY: "Rfyp=BxBeq"
+      REVOCATION_API_KEY: "test"
       HMAC_SECRET: ""
     command: >
       sh -c "/root/eudi-srv-web-issuing-eudiw-py/venv/bin/flask run"
