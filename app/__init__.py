@@ -28,6 +28,8 @@ import sys
 
 from jinja2 import Template
 
+from . import route_diplomas
+
 sys.path.append(os.path.dirname(__file__))
 
 from flask import Flask, render_template, request, send_from_directory
@@ -266,6 +268,7 @@ def create_app(test_config=None):
     app.register_blueprint(route_oid4vp.oid4vp)
     app.register_blueprint(route_dynamic.dynamic)
     app.register_blueprint(preauthorization.preauth)
+    app.register_blueprint(route_diplomas.rtu_bp)
 
     # config session
     app.config["SESSION_FILE_THRESHOLD"] = 50

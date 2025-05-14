@@ -189,13 +189,14 @@ def openid4vp():
 @oid4vp.route("/getpidoid4vp", methods=["GET"])
 def getpidoid4vp():
 
+    url = cfgservice.dynamic_presentation_url
     if "response_code" in request.args and "session_id" in request.args:
         cfgservice.app_logger.info(", Session ID: " + session["session_id"] + ", " + "oid4vp flow: same_device")
 
         response_code = request.args.get("response_code")
         presentation_id = oid4vp_requests[request.args.get("session_id")]["response"]["presentation_id"]
         url = (
-            cfgservice.dynamic_presentation_url
+            url
             + presentation_id
             + "?nonce=hiCV7lZi5qAeCy7NFzUWSR4iCfSmRb99HfIvCkPaCLc="
             + "&response_code=" + response_code
@@ -206,7 +207,7 @@ def getpidoid4vp():
         presentation_id = request.args.get("presentation_id")
 
         url = (
-            cfgservice.dynamic_presentation_url
+            url
             + presentation_id
             + "?nonce=hiCV7lZi5qAeCy7NFzUWSR4iCfSmRb99HfIvCkPaCLc="
         )

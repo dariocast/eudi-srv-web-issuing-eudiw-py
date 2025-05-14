@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="Title" content="RTU Diploma Verification" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta name="referrer" content="no-referrer">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>RTU Diploma Verification</title>
+</head>
+
+<body class="text-gray-900 flex flex-col min-h-screen">
+    {% include 'misc/header.html' %}
+
+    <div class="container mx-auto p-6 flex-grow">
+        <main class="bg-white shadow-md rounded-lg p-6 w-full max-w-3xl mx-auto text-center">
+            <h1 class="text-2xl font-semibold text-blue-800 mb-4">RTU Diploma Verification Successful</h1>
+            <p class="text-gray-700 mb-6">The following data has been extracted from the verified credential:</p>
+            <ul class="text-left space-y-2">
+                {% for key, value in data.items() %}
+                    <li><span class="font-medium text-gray-800">{{ key }}:</span> {{ value }}</li>
+                {% endfor %}
+            </ul>
+        </main>
+    </div>
+
+    {% include 'misc/footer.html' %}
+</body>
+
+</html>
