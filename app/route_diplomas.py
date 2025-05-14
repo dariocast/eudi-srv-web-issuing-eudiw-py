@@ -20,7 +20,7 @@ def present_rtu_qr():
     session_id = str(uuid4())
     session["session_id"] = session_id
 
-    input_descriptors = pid_diplomas_input_descriptors
+    input_descriptors = rtu_diplomas_input_descriptors
 
     nonce = str(uuid4())
     payload = json.dumps({
