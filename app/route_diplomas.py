@@ -17,20 +17,35 @@ CORS(rtu_bp)
 
 @rtu_bp.route("/present", methods=["GET"])
 def present_rtu_qr():
+    show_qr = request.args.get("show_qr") == "1"
+
     session_id = str(uuid4())
     session["session_id"] = session_id
 
     input_descriptors = rtu_diplomas_input_descriptors
-
     nonce = str(uuid4())
+    pres_def_id = str(uuid4())
+
+    presentation_definition = {
+        "id": pres_def_id,
+        "input_descriptors": input_descriptors
+    }
+
     payload = json.dumps({
         "type": "vp_token",
         "nonce": nonce,
-        "presentation_definition": {
-            "id": str(uuid4()),
-            "input_descriptors": input_descriptors
-        }
+        "presentation_definition": presentation_definition
     })
+
+    presentation_request = json.dumps(json.loads(payload), indent=2)
+
+    if not show_qr:
+        return render_template(
+            "diplomas/rtu_login_qr_code.html",
+            show_qr=False,
+            presentation_request=presentation_request
+        )
+
 
     url = cfgservice.dynamic_presentation_url.rstrip("/")
     headers = {"Content-Type": "application/json"}
@@ -40,7 +55,10 @@ def present_rtu_qr():
         return jsonify({"error": "Failed to initiate presentation"}), 500
 
     pres = response.json()
-    oid4vp_requests[session_id] = {"response": pres, "expires": datetime.now() + timedelta(minutes=cfgservice.deffered_expiry)}
+    oid4vp_requests[session_id] = {
+        "response": pres,
+        "expires": datetime.now() + timedelta(minutes=cfgservice.deffered_expiry)
+    }
 
     qr_uri = f"eudi-openid4vp://{urlparse(url).netloc}?client_id={pres['client_id']}&request_uri={pres['request_uri']}"
     qrcode = segno.make(qr_uri)
@@ -48,8 +66,16 @@ def present_rtu_qr():
     qrcode.save(out, kind='png', scale=3)
     qr_base64 = "data:image/png;base64," + base64.b64encode(out.getvalue()).decode("utf-8")
 
-    return render_template("diplomas/rtu_login_qr_code.html", url_data=qr_uri, qrcode=qr_base64, transaction_id=pres["transaction_id"], redirect_url=cfgservice.service_url)
-
+    return render_template(
+        "diplomas/rtu_login_qr_code.html",
+        show_qr=True,
+        url_data=qr_uri,
+        qrcode=qr_base64,
+        transaction_id=pres["transaction_id"],
+        session_id=session_id,
+        redirect_url=cfgservice.service_url,
+        presentation_definition=presentation_request
+    )
 
 @rtu_bp.route("/verify", methods=["GET"])
 def rtu_verification_result():

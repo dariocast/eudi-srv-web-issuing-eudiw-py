@@ -19,33 +19,68 @@
         <main class="bg-white shadow-md rounded-lg p-6 w-full max-w-3xl mx-auto text-center">
             <h1 class="text-2xl font-semibold text-blue-800 mb-4">Present Diploma Credentials from your EUDI Wallet</h1>
 
-            <div class="flex flex-col items-center space-y-4">
-                <h2 class="text-lg font-medium text-gray-800">Scan the QR Code</h2>
-                <img src="{{ qrcode }}" class="w-48 h-48">
-                <p class="text-gray-600">Scan with your wallet or click below to request directly.</p>
+            <div class="relative w-full max-w-3xl mx-auto mt-4">
+                <label class="text-sm font-medium text-gray-700 mb-1 block">Presentation Definition</label>
 
-                <div class="flex flex-col md:flex-row space-y-2 md:space-x-4 md:space-y-0 mt-4">
-                    <a href="{{ url_data }}" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Request</a>
-                    <a href="auth_choice" class="px-6 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400">Back</a>
-                </div>
+                <!-- Copy Button -->
+                <button onclick="copyPresentation()"
+                        class="absolute top-9 right-3 bg-gray-200 text-gray-600 rounded px-2 py-1 text-xs hover:bg-gray-300">
+                    📋 Copy
+                </button>
+
+                <!-- Resizable Textarea -->
+                <textarea id="presentationText"
+                          readonly
+                          rows="12"
+                          class="w-full p-3 bg-gray-100 border border-gray-300 rounded text-sm text-gray-700 font-mono resize-y overflow-auto">{{ presentation_request}}</textarea>
             </div>
+
+            {% if show_qr %}
+                <div class="flex flex-col items-center space-y-4 mt-8">
+                    <h2 class="text-lg font-medium text-gray-800">Scan the QR Code</h2>
+                    <img src="{{ qrcode }}" class="w-48 h-48">
+                    <p class="text-gray-600">Scan with your wallet or click below to request directly.</p>
+
+                    <div class="flex flex-col md:flex-row space-y-2 md:space-x-4 md:space-y-0 mt-4">
+                        <a href="{{ url_data }}" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Request</a>
+                        <a href="{{ url_for('rtu_diplomas.present_rtu_qr') }}" class="px-6 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400">Back</a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="mt-6">
+                    <a href="{{ url_for('rtu_diplomas.present_rtu_qr') }}?show_qr=1"
+                       class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                        Generate QR for this Presentation
+                    </a>
+                </div>
+            {% endif %}
+
         </main>
     </div>
 
     {% include 'misc/footer.html' %}
-
+    <script>
+        function copyPresentation() {
+            const textarea = document.getElementById("presentationText");
+            textarea.select();
+            textarea.setSelectionRange(0, 99999); // mobile support
+            navigator.clipboard.writeText(textarea.value)
+                .then(() => alert("Presentation copied to clipboard"))
+                .catch(err => console.error("Copy failed", err));
+        }
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-        var transaction_id = '{{ transaction_id }}';
+        var transaction_id = '{{ transaction_id | default("") }}';
+        var session_id = '{{ session_id | default("") }}';
 
         function Ajax_request() {
             $.ajax({
-                url: '{{ redirect_url }}rtu_diplomas/checkAuth',
+                url: '{{ redirect_url | default("") }}rtu_diplomas/checkAuth',
                 method: 'GET',
                 data: { "transaction_id": transaction_id },
                 success: function (response) {
                     console.log('Success:', response);
-                    const sessionId = '{{ session_id }}';
                     if (response) {
                         window.location.replace(location.origin + "/rtu_diplomas/verify?transaction_id=" + transaction_id);
                         clearInterval(intervalId);
@@ -54,8 +89,10 @@
             });
         }
 
-        const intervalId = setInterval(Ajax_request, 4000);
-        setTimeout(() => clearInterval(intervalId), 60000); // stop after 1 min
+        if (transaction_id) {
+            const intervalId = setInterval(Ajax_request, 4000);
+            setTimeout(() => clearInterval(intervalId), 60000); // stop after 1 min
+        }
     </script>
 </body>
 
