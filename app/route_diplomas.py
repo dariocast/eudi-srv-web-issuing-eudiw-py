@@ -27,7 +27,7 @@ def present_rtu_qr():
         "type": "vp_token",
         "nonce": nonce,
         "presentation_definition": {
-            "id": "cbeb8f12-a9f0-47a0-a11e-7e22ecc5300f",
+            "id": str(uuid4()),
             "input_descriptors": input_descriptors
         }
     })
